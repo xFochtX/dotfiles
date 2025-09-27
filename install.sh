@@ -26,4 +26,11 @@ bash scripts/enable-services.sh
 bash scripts/adjust-volume.sh
 #bash scripts/setup-hyprland.sh
 
+sudo usermod --shell /usr/bin/zsh $(whoami)
+
+if [ -x /usr/bin/zsh ] && [ "$(getent passwd root | cut -d: -f7)" != "/usr/bin/zsh" ]; then
+    echo "🔄 Cambiando el shell de root a zsh..."
+    sudo usermod --shell /usr/bin/zsh root
+fi
+
 echo "✅ Instalación completa."

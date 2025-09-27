@@ -10,6 +10,6 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 sudo systemctl enable --now NetworkManager.service
 
 # SDDM
-sudo systemctl enable --now sddm.service
+sudo systemctl enable enable sddm.service
 
 echo "✅ Servicios activados."

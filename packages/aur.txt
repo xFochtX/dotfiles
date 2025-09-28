@@ -1,4 +1,3 @@
 google-chrome
 paru
-paru-debug
 tofi

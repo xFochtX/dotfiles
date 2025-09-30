@@ -4,7 +4,9 @@ set -e
 echo "🔗 Creando enlaces simbólicos para root en carpeta dotfiles..."
 sudo ln -sf "$DOTFILES/.zshrc" /root/.zshrc
 sudo ln -sf "$DOTFILES/.p10k.zsh" /root/.p10k.zsh
-#sudo ln -sf "$DOTFILES/powerlevel10k" /root/powerlevel10k
+sudo mkdir /root/.config
+sudo rm -rf /root/.config/nvim
+sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/nvim
 
 #echo "Creando enlaces simbólicos para root en subcarpetas de dotfiles..."
 #PARENT_DIR="${DOTFILES%/dotfiles}"

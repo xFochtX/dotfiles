@@ -7,6 +7,8 @@ firefox
 git
 grub
 hyprland
+hyprlock
+jdk21-openjdk
 kitty
 linux
 linux-firmware
@@ -17,10 +19,13 @@ networkmanager
 pavucontrol
 pipewire-alsa
 pipewire-pulse
+plocate
 sddm
 sudo
 unzip
 waybar
+wget
+wl-clipboard
 zsh
 zsh-autocomplete
 zsh-autosuggestions

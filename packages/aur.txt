@@ -1,3 +1,4 @@
+burpsuite
 google-chrome
 paru
 tofi

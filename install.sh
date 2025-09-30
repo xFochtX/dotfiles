@@ -27,11 +27,12 @@ rm -rf ~/.config/kitty
 ln -sf "$DOTFILES/.config/kitty" ~/.config/kitty
 rm -rf ~/.config/hypr
 ln -sf "$DOTFILES/.config/hypr" ~/.config/hypr
-ln -sf "$DOTFILES/.zshrc" ~/.zshrc
-ln -sf "$DOTFILES/.p10k.zsh" ~/.p10k.zsh
+rm -rf ~/.config/waybar
+ln -sf "$DOTFILES/.config/waybar" ~/.config/waybar
 rm -rf ~/.config/nvim
 ln -sf "$DOTFILES/opt/nvim" ~/.config/nvim
-
+ln -sf "$DOTFILES/.zshrc" ~/.zshrc
+ln -sf "$DOTFILES/.p10k.zsh" ~/.p10k.zsh
 echo "⚙️ Ejecutando configuración adicional..."
 #bash scripts/enable-services.sh
 #bash scripts/adjust-volume.sh

@@ -1,10 +1,27 @@
 {
     "custom/arch": {
-        "format": ""󰣇",
+        "format": "󰣇",
         "tooltip": true,
-        "tooltip-format": "btw"
+        "tooltip-format": "Arch"
     },
 
+    "custom/local_ip": {
+        "exec": "~/.config/waybar/scripts/local_ip.sh",
+        "interval": 2,
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "on-click": "sh ~/dotfiles/.config/waybar/scripts/open-nmtui.sh"
+    },
+
+    "custom/vpn": {
+        "exec": "~/.config/waybar/scripts/vpn_status.sh",
+        "interval": 2,
+        "return-type": "json",
+        "format": "{}",
+        "tooltip": true,
+        "on-click": "sh ~/dotfiles/.config/waybar/scripts/vpn_toggle.sh"
+    },
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -43,13 +60,12 @@
         "on-click": "pavucontrol"
     },
     "network": {
-        "format-wifi": "   {essid} ({signalStrength}%)",
+        "format-wifi": "  {ipaddr}",
         "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
+        "tooltip-format": "   {essid} ({signalStrength}%)",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-	"on-click": "sh ~/scripts/rofi-wifi-menu/rofi-wifi-menu.sh"
-	 
+        "format-disconnected": "Disconnected 󱚼",
+	      "on-click": "sh ~/dotfiles/.config/waybar/scripts/ip.sh"
     },
     "cpu": {
         "format": "  {usage}%",
@@ -66,11 +82,6 @@
         "format-critical": " {temperatureC}",
         "format": " {temperatureC}°C"
     },
-    "hyprland/language": {
-       "format": "  {}",
-       "format-en": "EN",
-       "format-ru": "RU"
-    },
     "battery": {
         "states": {
             "warning": 30,
@@ -78,13 +89,10 @@
         },
         "format": "{icon}  {capacity}%",
         "format-full": "{icon}  {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "  {capacity}%",
+        "format-charging": "󰢝  {capacity}%",
+        "format-plugged": "󰂄  {capacity}%",
         "format-alt": "{time}  {icon}",
         "format-icons": ["", "", "", "", ""]
-    },
-    "battery#bat2": {
-        "bat": "BAT2"
     },
     "clock": {
         "format": "{:%H:%M | %e %B} ",

@@ -6,7 +6,8 @@
 }
 
 window#waybar {
-    background: rgba(26, 27, 38, 0.75);
+    background: rgba(26, 27, 38, 0.4);
+    /*background: transparent;*/
     color: #c0caf5;
     font-family: 
         HackNerdFont,
@@ -47,7 +48,9 @@ window#waybar {
 #scratchpad,
 #power-profiles-daemon,
 #language,
-#mpd {
+#mpd,
+#custom-local_ip,
+#custom-vpn {
     padding: 0 10px;
     border-radius: 15px;
 }
@@ -69,7 +72,9 @@ window#waybar {
 #scratchpad:hover,
 #power-profiles-daemon:hover,
 #language:hover,
-#mpd:hover {
+#mpd:hover,
+#custom-local_ip:hover,
+#custom-vpn:hover {
     background: rgba(26, 27, 38, 0.9);
 }
 
@@ -104,4 +109,71 @@ window#waybar {
 }
 #custom-arch:hover {
     color: #1793d1;
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: transparent;
+    text-shadow: 0 0 3px #26A65B, 0 0 5px #26A65B;
+}
+/*
+#battery.full {
+    background-color: #26A65B;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    text-shadow: 0 0 3px #26A65B, 0 0 5px #26A65B;
+}
+*/
+#battery.full {
+    color: #ffffff;
+    background-color: transparent;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    text-shadow: 0 0 3px #26A65B, 0 0 5px #26A65B;
+}
+
+/* VPN conectada */
+.custom-vpn-on {
+    color: #1bbf3e;
+    font-weight: bold;
+}
+
+/* VPN desconectada */
+.custom-vpn-off {
+    color: #ff5555;
+    font-style: italic;
+}
+
+/*
+=============================
+Animations
+=============================
+*/
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

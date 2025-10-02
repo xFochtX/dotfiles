@@ -5,10 +5,10 @@ set -e
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 export DOTFILES
 
-echo "📦 Instalando paquetes de pacman..."
+echo "Instalando paquetes de pacman..."
 sudo pacman -S --needed - < packages/pacman.txt --noconfirm &> /dev/null
 
-echo "📦 Instalando paquetes de AUR con paru..."
+echo "Instalando paquetes de AUR con paru..."
 if ! command -v paru &> /dev/null; then
 	cd /tmp
 	git clone https://aur.archlinux.org/paru.git
@@ -22,7 +22,18 @@ fi
 echo "Instalado paquetes de GitHub"
 "$DOTFILES/scripts/install-opt/00-install.sh"
 
-echo "🔗 Creando enlaces simbólicos..."
+echo "Creando enlaces simbólicos..."
+
+mkdir -p ~/.config/systemd/user
+# Recorre todos los archivos .service de tu dotfiles
+for service_file in "$DOTFILES/.config/systemd/user/"*.service; do
+  service_name=$(basename "$service_file")
+  target="$HOME/.config/systemd/user/$service_name"
+
+  echo "→ Enlazando $service_name"
+  ln -sf "$service_file" "$target"
+done
+
 rm -rf ~/.config/kitty
 ln -sf "$DOTFILES/.config/kitty" ~/.config/kitty
 rm -rf ~/.config/hypr
@@ -33,8 +44,9 @@ rm -rf ~/.config/nvim
 ln -sf "$DOTFILES/opt/nvim" ~/.config/nvim
 ln -sf "$DOTFILES/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES/.p10k.zsh" ~/.p10k.zsh
-echo "⚙️ Ejecutando configuración adicional..."
-#bash scripts/enable-services.sh
+
+echo "Ejecutando configuración adicional..."
+bash "$DOTFILES/scripts/enable-services.sh"
 #bash scripts/adjust-volume.sh
 
 #bash scripts/setup-hyprland.sh

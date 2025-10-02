@@ -1,0 +1,12 @@
+[Unit]
+Description=Battery full alert script
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/bin/bash -c 'while true; do ~/.local/bin/battery_full_alert.sh; sleep 15; done'
+Restart=always
+
+[Install]
+WantedBy=default.target
+

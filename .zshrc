@@ -63,5 +63,22 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 # Comandos de consola shell ya no se mostrarán en negrita
 export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
 
+# Activando comando fzf
+[ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
+[ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+
+# Custom functions
+# ------------------------
+# Set Target
+function setTarget(){
+    ip_address=$1
+    machine_name=$2
+    echo "$ip_address $machine_name" > "$DOTFILES/opt/target"
+}
+
+# Clear Target
+function clearTarget(){
+	echo '' > "$DOTFILES/opt/target"
+}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

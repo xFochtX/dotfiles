@@ -1,6 +1,6 @@
 // -*- mode: jsonc -*-
 {
-    "layer": "top", // Waybar at top layer
+    "layer": "bottom", // Waybar at bottom layer
     "position": "top", // Waybar position (top|bottom|left|right)
     "height": 42, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
@@ -8,21 +8,18 @@
     // Choose the order of the modules
     "modules-left": [
         "custom/arch",
-        "hyprland/workspaces"
+        "custom/local_ip",
+        "custom/vpn"
     ],
     "modules-center": [
-        "hyprland/window"
+        "hyprland/workspaces"
     ],
     "modules-right": [
-        //"idle_inhibitor",
         "pulseaudio",
-        "network",
         "cpu",
         "memory",
         "temperature",
-        //"hyprland/language",
         "battery",
-        //"battery#bat2",
         "clock"
     ],
     //Modules configuration

@@ -4,10 +4,12 @@ bat
 efibootmgr
 fastfetch
 firefox
+fzf
 git
 grub
 hyprland
 hyprlock
+inotify-tools
 jdk21-openjdk
 kitty
 linux
@@ -16,10 +18,13 @@ lsd
 nano
 neovim
 networkmanager
+openssh
+openvpn
 pavucontrol
 pipewire-alsa
 pipewire-pulse
 plocate
+ranger
 sddm
 sudo
 unzip

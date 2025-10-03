@@ -67,6 +67,9 @@ export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
+# Activando la tecla Suprimir o Delete
+bindkey "\e[3~" delete-char
+
 # Custom functions
 # ------------------------
 # Set Target

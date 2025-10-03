@@ -10,8 +10,8 @@ systemctl --user enable --now pipewire.service pipewire-pulse.service wireplumbe
 # Servicios personalizados del usuario
 echo "Activando servicios personalizados del usuario..."
 
-# Agrega aquí más servicios personalizados del usuario
-# systemctl --user enable --now otro-servicio.service
+# Servicio para limpiar historial de Chrome al cerrar el navegador
+systemctl --user enable --now clear-chrome-history.service
 
 ## ─── Servicios del sistema (requieren sudo) ───────────────────────────────────
 echo "Habilitando servicios del sistema..."

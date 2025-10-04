@@ -12,7 +12,7 @@ if [ ! -d "$LOCAL_FONTS" ]; then
   exit 1
 fi
 
-echo "🔗 Creando enlace simbólico global de fuentes..."
+echo "Creando enlace simbólico global de fuentes..."
 
 # Eliminar enlace simbólico existente o carpeta si existe
 if [ -L "$GLOBAL_FONTS" ] || [ -d "$GLOBAL_FONTS" ]; then
@@ -22,7 +22,7 @@ fi
 # Crear enlace simbólico
 sudo ln -s "$LOCAL_FONTS" "$GLOBAL_FONTS"
 
-echo "🔄 Actualizando caché de fuentes..."
+echo "Actualizando caché de fuentes..."
 sudo fc-cache -fv
 
-echo "✅ Fuentes actualizadas globalmente con enlace simbólico."
+echo "Fuentes actualizadas globalmente con enlace simbólico."

@@ -9,19 +9,17 @@ fi
 
 # Obtener el directorio donde se encuentra este archivo .zshrc
 DOTFILES="$(cd "$(dirname "$(readlink -f "${(%):-%N}")")" && pwd)"
+export DOTFILES
+
 source "$DOTFILES/opt/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Custom Aliases
 # -----------------------------------------------
-# bat
-alias catn='bat --style=plain'
-alias catnp='bat --style=plain --paging=never'
+# Cargar todos los alias
+for file in "$DOTFILES/zsh/aliases"/*.zsh; do
+  source "$file"
+done
 
-# ls
-alias ll='lsd -lh --group-dirs=first'
-alias la='lsd -a --group-dirs=first'
-alias l='lsd --group-dirs=first'
-alias lla='lsd -lha --group-dirs=first'
 
 # ZSH AutoSuggestions Plugin
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -31,6 +29,9 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # ZHS Sudo Plugin
 source "$DOTFILES/opt/sudo-plugin/zsh-sudo.zsh"
+
+# Cargar funciones target
+source "$DOTFILES/zsh/functions/target.zsh"
 
 # History
 HISTFILE=~/.zsh_history
@@ -62,6 +63,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Comandos de consola shell ya no se mostrarán en negrita
 export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
+export PATH="$DOTFILES/bin:$PATH"
 
 # Activando comando fzf
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
@@ -70,18 +72,5 @@ export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
 # Activando la tecla Suprimir o Delete
 bindkey "\e[3~" delete-char
 
-# Custom functions
-# ------------------------
-# Set Target
-function setTarget(){
-    ip_address=$1
-    machine_name=$2
-    echo "$ip_address $machine_name" > "$DOTFILES/opt/target"
-}
-
-# Clear Target
-function clearTarget(){
-	echo '' > "$DOTFILES/opt/target"
-}
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

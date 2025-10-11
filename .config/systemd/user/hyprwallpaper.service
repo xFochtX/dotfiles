@@ -1,0 +1,10 @@
+[Unit]
+Description=Hyprland Wallpaper Changer
+
+[Service]
+ExecStart=%h/dotfiles/.local/bin/wallpaper.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
+

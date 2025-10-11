@@ -30,8 +30,9 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # ZHS Sudo Plugin
 source "$DOTFILES/opt/sudo-plugin/zsh-sudo.zsh"
 
-# Cargar funciones target
+# Cargar funciones personalizadas
 source "$DOTFILES/zsh/functions/target.zsh"
+source "$DOTFILES/zsh/functions/mkt.zsh"
 
 # History
 HISTFILE=~/.zsh_history
@@ -63,7 +64,9 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Comandos de consola shell ya no se mostrarán en negrita
 export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
-export PATH="$DOTFILES/bin:$PATH"
+
+# Agregar rutas a los binarios
+#export PATH="$DOTFILES/bin:$PATH"
 
 # Activando comando fzf
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh

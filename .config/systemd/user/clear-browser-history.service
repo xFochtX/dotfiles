@@ -1,0 +1,10 @@
+[Unit]
+Description=Limpiar el historial del navegador al iniciar sesión
+After=graphical.target
+
+[Service]
+ExecStart=%h/dotfiles/.local/bin/clear-all-browser-history.sh
+
+[Install]
+WantedBy=default.target
+

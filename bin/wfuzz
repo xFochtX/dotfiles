@@ -1,0 +1,3 @@
+#!/bin/bash
+source "$HOME/dotfiles/opt/wfuzz/wfuzz/env/bin/activate"
+exec wfuzz "$@"

@@ -6,7 +6,7 @@ function set-target() {
     echo "$ip_address $machine_name" > "$DOTFILES/opt/target"
 }
 
-function clear-target() {
+function clean-target() {
     echo '' > "$DOTFILES/opt/target"
 }
 

@@ -182,7 +182,7 @@ return {
 
   -- Aquí añadimos mini.nvim con mini.icons configurado
   {
-    "echasnovski/mini.nvim",
+    "nvim-mini/mini.nvim",
     event = "VeryLazy",
     config = function()
       require("mini.icons").setup({})

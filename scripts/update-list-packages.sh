@@ -1,32 +1,20 @@
 #!/bin/bash
-source ./list-packages-aur.sh
-set -e
+set -euo pipefail
 
-DOTFILES_DIR="$HOME/dotfiles/packages"
+OUTDIR="$HOME/dotfiles/packages"
+mkdir -p "$OUTDIR"
 
-# Lista explícitos (oficiales + AUR)
-pacman -Qe --quiet | awk '{print $1}' | sort > "$DOTFILES_DIR/pacman-all.txt"
+echo "Listando paquetes oficiales instalados explícitamente..."
+pacman -Qe --quiet | awk '{print $1}' | sort >"$OUTDIR/pacman_raw.txt"
 
-echo -e "\nActualizando lista de paquetes AUR..."
-if command -v paru &> /dev/null || command -v yay &> /dev/null; then
-    pacman -Qm | awk '{print $1}' | sort > "$DOTFILES_DIR/aur-all.txt"
-    filter_existing_aur_pkgs "$DOTFILES_DIR/aur-all.txt" "$DOTFILES_DIR/aur.txt"
-    echo "Paquetes de AUR actualizados."
-else
-    echo "⚠️ Paru o yay no está instalado. Saltando AUR."
-fi
+echo "Listando paquetes instalados no oficiales (AUR/local)..."
+pacman -Qm --quiet | awk '{print $1}' | sort >"$OUTDIR/aur.txt"
 
-echo -e "\nActualizando lista de aplicaciones Flatpak..."
-if command -v flatpak &> /dev/null; then
-    flatpak list --app --columns=application | sort > "$DOTFILES_DIR/flatpak.txt"
-    echo "Aplicaciones Flatpak actualizadas."
-else
-    echo "⚠️ Flatpak no está instalado. Saltando Flatpak."
-fi
+echo "Restando paquetes AUR de paquetes oficiales para obtener solo paquetes oficiales puros..."
+comm -23 "$OUTDIR/pacman_raw.txt" "$OUTDIR/aur.txt" >"$OUTDIR/pacman.txt"
 
-echo -e "\nActualizando lista de paquetes pacman..."
-comm -23 "$DOTFILES_DIR/pacman-all.txt" "$DOTFILES_DIR/aur-all.txt" > "$DOTFILES_DIR/pacman.txt"
-rm "$DOTFILES_DIR/pacman-all.txt" "$DOTFILES_DIR/aur-all.txt"
-echo "Paquetes de pacman actualizados."
+rm "$OUTDIR/pacman_raw.txt"
 
-echo -e "\nTodas las listas de paquetes han sido actualizadas."
+echo "Archivos generados en $OUTDIR:"
+echo "- Paquetes oficiales reales: $OUTDIR/pacman.txt"
+echo "- Paquetes AUR o locales: $OUTDIR/aur.txt"

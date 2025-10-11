@@ -1,11 +1,11 @@
 [Unit]
-Description=Battery full alert script
+Description=Monitoreo de batería y alarma
 After=graphical.target
 
 [Service]
-Type=simple
-ExecStart=/bin/bash -c 'while true; do ~/.local/bin/battery_full_alert.sh; sleep 15; done'
+ExecStart=%h/dotfiles/.local/bin/battery-alert.sh
 Restart=always
+RestartSec=5
 
 [Install]
 WantedBy=default.target

@@ -1,4 +1,5 @@
 burpsuite
 google-chrome
 paru
+paru-debug
 tofi

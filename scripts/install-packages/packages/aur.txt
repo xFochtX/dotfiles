@@ -1,0 +1,9 @@
+burpsuite
+google-chrome
+ncurses5-compat-libs
+paru
+paru-debug
+tofi
+uefitool
+vmware-keymaps
+vmware-workstation

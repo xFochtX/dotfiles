@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Verifica si se pasó un archivo como argumento
+if [ -z "$1" ]; then
+  echo "Uso: $0 archivo"
+  exit 1
+fi
+
+# Copia el contenido del archivo al portapapeles
+xclip -selection clipboard <"$1"

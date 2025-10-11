@@ -1,3 +1,4 @@
+arp-scan
 base
 base-devel
 bat
@@ -16,6 +17,7 @@ git
 go
 gobuster
 grub
+gtkmm
 hyprland
 hyprlock
 hyprpaper
@@ -23,6 +25,7 @@ imagemagick
 inotify-tools
 jdk21-openjdk
 jemalloc
+jq
 julia
 kitty
 lazygit
@@ -30,6 +33,7 @@ less
 libcurl-compat
 linux
 linux-firmware
+linux-headers
 lsd
 luarocks
 nano
@@ -39,7 +43,9 @@ nmap
 nodejs
 npm
 obsidian
+openbsd-netcat
 openssh
+open-vm-tools
 openvpn
 pavucontrol
 perl-crypt-ssleay
@@ -51,6 +57,7 @@ plocate
 pyenv
 python-pip
 python-pipx
+python-pwntools
 python-pycurl
 ranger
 reflector
@@ -65,6 +72,7 @@ tk
 tree
 unzip
 upx
+virtualbox
 waybar
 wget
 wl-clipboard

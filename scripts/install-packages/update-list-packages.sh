@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-OUTDIR="$HOME/dotfiles/packages"
+OUTDIR="$HOME/dotfiles/scripts/install-packages/packages"
 mkdir -p "$OUTDIR"
 
 echo "Listando paquetes oficiales instalados explícitamente..."

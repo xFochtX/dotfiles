@@ -72,8 +72,10 @@ export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
 
-# Activando la tecla Suprimir o Delete
+# Configurando teclas personalizadas
 bindkey "\e[3~" delete-char
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

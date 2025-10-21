@@ -21,6 +21,7 @@ gtkmm
 hyprland
 hyprlock
 hyprpaper
+hyprshot
 imagemagick
 inotify-tools
 jdk21-openjdk
@@ -55,6 +56,7 @@ pipewire-alsa
 pipewire-pulse
 plocate
 pyenv
+python-flake8
 python-pip
 python-pipx
 python-pwntools
@@ -77,6 +79,8 @@ waybar
 wget
 wl-clipboard
 xclip
+xdg-desktop-portal
+xdg-desktop-portal-hyprland
 xsel
 zellij
 zsh

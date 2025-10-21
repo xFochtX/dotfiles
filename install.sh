@@ -5,6 +5,9 @@ set -e
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 export DOTFILES
 
+echo "Sincronizando repositorio BlackArch..."
+bash "$DOTFILES/scripts/sync-blackarch.sh"
+
 echo "Instalando paquetes..."
 bash "$DOTFILES/scripts/install-packages/00-install.sh"
 

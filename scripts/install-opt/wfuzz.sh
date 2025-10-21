@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-CONFIG_DIR="$HOME/dotfiles/opt/wfuzz"
+CONFIG_DIR="/usr/local/bin/wfuzz-py"
 PYTHON_VERSION="3.11.13"
 PIP_VERSION="24.0"
 
@@ -16,7 +16,7 @@ else
 fi
 
 # Crear el virtualenv con pyenv
-VENV_DIR="$CONFIG_DIR/wfuzz/env"
+VENV_DIR="$CONFIG_DIR/env"
 
 # Usar pyenv para crear un entorno virtual con la versión indicada
 pyenv local "$PYTHON_VERSION" # cambiar localmente la versión para crear virtualenv

@@ -10,12 +10,27 @@ return {
   {
     "mfussenegger/nvim-lint",
     config = function()
-      require("lint").linters_by_ft = {
+      local lint = require("lint")
+
+      -- 🧠 Ajusta los argumentos que usa flake8
+      lint.linters.flake8 = {
+        cmd = "flake8",
+        stdin = false,
+        args = {
+          "--ignore=E203,E266,E501,W503,F403",
+          "--max-line-length=100",
+        },
+      }
+
+      -- Asocia flake8 con archivos Python
+      lint.linters_by_ft = {
         python = { "flake8" },
       }
+
+      -- Auto-lint al guardar
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
         callback = function()
-          require("lint").try_lint()
+          lint.try_lint()
         end,
       })
     end,

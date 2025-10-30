@@ -1,103 +1,102 @@
 {
-    "custom/arch": {
-        "format": "󰣇",
-        "tooltip": true,
-        "tooltip-format": "Arch"
-    },
+  "custom/arch": {
+    "format": "󰣇",
+    "tooltip": true,
+    "tooltip-format": "Arch"
+  },
 
-    "custom/local_ip": {
-        "exec": "~/.config/waybar/scripts/local_ip.sh",
-        "interval": 2,
-        "return-type": "json",
-        "format": "{}",
-        "tooltip": true,
-        "on-click": "sh ~/dotfiles/.config/waybar/scripts/open-nmtui.sh"
-    },
+  "custom/local_ip": {
+    "exec": "~/.config/waybar/scripts/local_ip.sh",
+    "interval": 2,
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "sh ~/dotfiles/.config/waybar/scripts/open-nmtui.sh"
+  },
 
-    "custom/vpn": {
-        "exec": "~/.config/waybar/scripts/vpn_status.sh",
-        "interval": 2,
-        "return-type": "json",
-        "format": "{}",
-        "tooltip": true,
-        "on-click": "sh ~/dotfiles/.config/waybar/scripts/vpn_toggle.sh"
-    },
+  "custom/vpn": {
+    "exec": "~/.config/waybar/scripts/vpn_status.sh",
+    "interval": 2,
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "sh ~/dotfiles/.config/waybar/scripts/vpn_toggle.sh"
+  },
 
-    "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "warp-on-scroll": false,
-        "format": "{name}",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        }
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "{icon} {volume}%  {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": " {volume}%",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-    "network": {
-        "format-wifi": "  {ipaddr}",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "   {essid} ({signalStrength}%)",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected 󱚼",
-	      "on-click": "sh ~/dotfiles/.config/waybar/scripts/ip.sh"
-    },
-    "cpu": {
-        "format": "  {usage}%",
-        "tooltip": true
-    },
-    "memory": {
-        "format": "  {}%",
-	"tooltip": true
-    },
-    "temperature": {
-        "interval": 10,
-        "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
-        "critical-threshold": 100,
-        "format-critical": " {temperatureC}",
-        "format": " {temperatureC}°C"
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-full": "{icon}  {capacity}%",
-        "format-charging": "󰢝  {capacity}%",
-        "format-plugged": "󰂄  {capacity}%",
-        "format-alt": "{time}  {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "clock": {
-        "format": "{:%H:%M | %e %B} ",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "warp-on-scroll": false,
+    "format": "{name}",
+    "format-icons": {
+      "urgent": "",
+      "active": "",
+      "default": ""
     }
-
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-bluetooth": "{icon} {volume}%  {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+  "network": {
+    "format-wifi": "  {ipaddr}",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "   {essid} ({signalStrength}%)",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected 󱚼",
+    "on-click": "sh ~/dotfiles/.config/waybar/scripts/ip.sh"
+  },
+  "cpu": {
+    "format": "  {usage}%",
+    "tooltip": true
+  },
+  "memory": {
+    "format": "  {}%",
+    "tooltip": true
+  },
+  "temperature": {
+    "interval": 10,
+    "hwmon-path": "/sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input",
+    "critical-threshold": 100,
+    "format-critical": " {temperatureC}",
+    "format": " {temperatureC}°C"
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon}  {capacity}%",
+    "format-full": "{icon}  {capacity}%",
+    "format-charging": "󰢝  {capacity}%",
+    "format-plugged": "󰂄  {capacity}%",
+    "format-alt": "{time}  {icon}",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "clock": {
+    "format": "{:%H:%M | %e %B} ",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%Y-%m-%d}"
+  }
 }

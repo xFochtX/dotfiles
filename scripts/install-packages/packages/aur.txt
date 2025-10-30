@@ -1,8 +1,5 @@
-burpsuite
 google-chrome
-ncurses5-compat-libs
-paru
-paru-debug
+gtkmm
 tofi
 uefitool
 vmware-keymaps

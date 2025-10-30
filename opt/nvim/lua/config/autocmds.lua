@@ -20,3 +20,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.formatoptions:remove({ "r" })
   end,
 })
+
+-- Estableciendo un color de línea separadora entre ventanas
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#eeeeee", bg = "NONE" })
+  end,
+})

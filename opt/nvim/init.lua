@@ -5,3 +5,7 @@ require("config.nodejs").setup({ silent = true })
 require("config.lazy")
 vim.opt.timeoutlen = 1000
 vim.opt.ttimeoutlen = 0
+
+-- Activar colores verdaderos y UTF-8
+vim.o.encoding = "utf-8"
+vim.o.termguicolors = true

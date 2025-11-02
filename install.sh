@@ -11,6 +11,9 @@ bash "$DOTFILES/scripts/sync-blackarch.sh"
 echo "Instalando paquetes..."
 bash "$DOTFILES/scripts/install-packages/00-install.sh"
 
+echo "Reconstruyendo la caché de fuentes..."
+fc-cache -fv
+
 mkdir -p "$DOTFILES/.config/obsidian"
 
 echo "Creando enlaces simbólicos..."

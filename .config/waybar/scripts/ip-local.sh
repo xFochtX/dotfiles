@@ -12,23 +12,22 @@ SIGNAL=$(grep "$INTERFACE" /proc/net/wireless | awk '{print int($3 * 100 / 70)}'
 
 # Caso 1: Interfaz no disponible
 if ! ip link show "$INTERFACE" &>/dev/null; then
-    echo '{"text":"󱚼  Disconnected", "tooltip":"Wi-Fi desconectado", "class":"wifi-disconnected"}'
-    exit
+  echo '{"text":"󱚼  Disconnected", "tooltip":"Wi-Fi desconectado", "class":"wifi-disconnected"}'
+  exit
 fi
 
 # Caso 2: Enlace activo pero sin IP
 if [[ "$LINK_STATE" == "up" && -z "$IP" ]]; then
-    echo "{\"text\":\"$INTERFACE (No IP) \", \"tooltip\":\"$INTERFACE conectado, sin IP asignada\", \"class\":\"wifi-linked\"}"
-    exit
+  echo "{\"text\":\"$INTERFACE (No IP)  \", \"tooltip\":\"$INTERFACE conectado, sin IP asignada\", \"class\":\"wifi-linked\"}"
+  exit
 fi
 
 # Caso 3: Conectado con IP
 if [[ -n "$IP" ]]; then
-    TOOLTIP="$INTERFACE - $SSID ($SIGNAL%)"
-    echo "{\"text\":\"  $IP\", \"tooltip\":\"$TOOLTIP\", \"class\":\"wifi-connected\"}"
-    exit
+  TOOLTIP="$INTERFACE - $SSID ($SIGNAL%)"
+  echo "{\"text\":\"  $IP\", \"tooltip\":\"$TOOLTIP\", \"class\":\"wifi-connected\"}"
+  exit
 fi
 
 # ⚠️ Fallback
-echo '{"text":"󱚼 Sin conexión", "tooltip":"Estado desconocido", "class":"wifi-unknown"}'
-
+echo '{"text":"󱚼  Sin conexión", "tooltip":"Estado desconocido", "class":"wifi-unknown"}'

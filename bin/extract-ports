@@ -1,11 +1,23 @@
 #!/bin/bash
 
+# Extrae los puertos abiertos del archivo
 ports="$(cat $1 | grep -oP '\d{1,5}/open' | awk '{print $1}' FS='/' | xargs | tr ' ' ',')"
+
+# Extrae la IP del host
 ip_address="$(cat $1 | grep -oP '^Host: .* \(\)' | head -n 1 | awk '{print $2}')"
+
+# Crea un archivo temporal con la información
 echo -e "\n[*] Extracting information...\n" >extract-ports.tmp
 echo -e "\t[*] IP Address: $ip_address" >>extract-ports.tmp
 echo -e "\t[*] Open ports: $ports\n" >>extract-ports.tmp
-echo $ports | tr -d '\n' | xclip -sel clip
+
+# Copia directamente los puertos al portapapeles de Wayland
+echo -n "$ports" | wl-copy
+
 echo -e "[*] Ports copied to clipboard\n" >>extract-ports.tmp
+
+# Muestra el resultado
 bat extract-ports.tmp
+
+# Limpia el archivo temporal
 rm extract-ports.tmp

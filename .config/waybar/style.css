@@ -1,34 +1,29 @@
 * {
-    /* `otf-font-awesome` and Hack Nerd Font are required to be installed for icons */
-    font-family: "HackNerdFont", FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    transition: background-color .3s ease-out;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 12px;
+  transition: background-color 0.3s ease-out;
 }
 
 window#waybar {
-    background: rgba(26, 27, 38, 0.4);
-    /*background: transparent;*/
-    color: #c0caf5;
-    font-family: 
-        HackNerdFont,
-        feather;
-    transition: background-color .5s;
+  background: rgba(26, 27, 38, 0.4);
+  /*background: transparent;*/
+  color: #c0caf5;
+  font-family: "JetBrainsMono Nerd Font";
+  transition: background-color 0.5s;
 }
-
 .modules-left,
 .modules-center,
-.modules-right
-{
-    background: rgba(0, 0, 8, .7);
-    margin: 5px 10px;
-    padding: 0 5px;
-    border-radius: 15px;
+.modules-right {
+  background: rgba(0, 0, 8, 0.7);
+  margin: 5px 10px;
+  padding: 0 5px;
+  border-radius: 15px;
 }
 .modules-left {
-    padding: 0;
+  padding: 0;
 }
 .modules-center {
-    padding: 0 10px;
+  padding: 0 10px;
 }
 
 #clock,
@@ -51,8 +46,8 @@ window#waybar {
 #mpd,
 #custom-local_ip,
 #custom-vpn {
-    padding: 0 10px;
-    border-radius: 15px;
+  padding: 0 10px;
+  border-radius: 15px;
 }
 
 #clock:hover,
@@ -75,9 +70,8 @@ window#waybar {
 #mpd:hover,
 #custom-local_ip:hover,
 #custom-vpn:hover {
-    background: rgba(26, 27, 38, 0.9);
+  background: rgba(26, 27, 38, 0.9);
 }
-
 
 #workspaces button {
   background: transparent;
@@ -87,12 +81,12 @@ window#waybar {
   font-weight: 900;
   font-size: 13pt;
   color: #c0caf5;
-  border:none;
+  border: none;
   border-radius: 15px;
 }
 
 #workspaces button.active {
-    background: #13131d; 
+  background: #13131d;
 }
 
 #workspaces button:hover {
@@ -102,31 +96,33 @@ window#waybar {
 }
 
 #custom-arch {
-    margin-left: 5px;
-    padding: 0 10px;
-    font-size: 25px;
-    transition: color .5s;
+  margin-left: 5px;
+  padding: 0 10px;
+  font-size: 25px;
+  transition: color 0.5s;
 }
 #custom-arch:hover {
-    color: #1793d1;
+  color: #1793d1;
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  background-color: #f53c3c;
+  color: #ffffff;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-
-#battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: transparent;
-    text-shadow: 0 0 3px #26A65B, 0 0 5px #26A65B;
+#battery.charging,
+#battery.plugged {
+  color: #ffffff;
+  background-color: transparent;
+  text-shadow:
+    0 0 3px #26a65b,
+    0 0 5px #26a65b;
 }
 /*
 #battery.full {
@@ -141,43 +137,45 @@ window#waybar {
 }
 */
 #battery.full {
-    color: #ffffff;
-    background-color: transparent;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: steps(12);
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-    text-shadow: 0 0 3px #26A65B, 0 0 5px #26A65B;
+  color: #ffffff;
+  background-color: transparent;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  text-shadow:
+    0 0 3px #26a65b,
+    0 0 5px #26a65b;
 }
 
 #custom-local_ip {
-    transition: color .5s;
+  transition: color 0.5s;
 }
 
 #custom-local_ip:hover {
-    color: #1793d1;
+  color: #1793d1;
 }
 
 #custom-vpn {
-    margin-right: 5px;
-    transition: color .5s;
+  margin-right: 5px;
+  transition: color 0.5s;
 }
 
 #custom-vpn:hover {
-    color: #1793d1;
+  color: #1793d1;
 }
 
 /* VPN conectada */
 .custom-vpn-on {
-    color: #1bbf3e;
-    font-weight: bold;
+  color: #1bbf3e;
+  font-weight: bold;
 }
 
 /* VPN desconectada */
 .custom-vpn-off {
-    color: #ff5555;
-    font-style: italic;
+  color: #ff5555;
+  font-style: italic;
 }
 
 /*
@@ -187,10 +185,10 @@ Animations
 */
 
 @keyframes blink {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

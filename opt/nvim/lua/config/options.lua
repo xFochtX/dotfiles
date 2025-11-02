@@ -2,11 +2,25 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
--- Establecer configuraciones para el cursor
+-- ────────────────────────────────────────────────
+-- Apariencia del cursor por modo (guicursor)
+-- ────────────────────────────────────────────────
 vim.opt.guicursor = {
-  "n-v-c:block", -- Normal, visual y command
-  "i-ci-ve:ver25", -- Insert, command-insert, visual-ex
-  "r-cr-o:hor20", -- Replace y otros
-  "t:ver25-blinkwait175-blinkoff150-blinkon175", -- Terminal
-  "sm:block-blinkwait175-blinkoff150-blinkon175", -- showmatch
+  -- Normal / Visual / Command → bloque sólido
+  "n-v-c:ver25-blinkwait300-blinkon200-blinkoff150",
+
+  -- Insert / Command-Insert / Visual-Ex → barra vertical elegante
+  "i-ci-ve:ver25-blinkwait150-blinkon120-blinkoff120",
+
+  -- Replace / Command-Replace / Operator → guion horizontal
+  "r-cr-o:ver25-blinkwait150-blinkon100-blinkoff100",
+
+  -- Terminal → barra vertical más gruesa y suave
+  "t:ver25-blinkwait200-blinkon150-blinkoff150",
+
+  -- ShowMatch (cuando se resaltan paréntesis) → bloque parpadeante
+  "sm:block-blinkwait100-blinkon100-blinkoff100",
 }
+
+-- 🚫 Desactivar formato automático al guardar en LazyVim
+vim.g.autoformat = false

@@ -5,8 +5,8 @@
     "tooltip-format": "Arch"
   },
 
-  "custom/local_ip": {
-    "exec": "~/.config/waybar/scripts/local_ip.sh",
+  "custom/ip_local": {
+    "exec": "~/.config/waybar/scripts/ip-local.sh",
     "interval": 2,
     "return-type": "json",
     "format": "{}",
@@ -15,12 +15,12 @@
   },
 
   "custom/vpn": {
-    "exec": "~/.config/waybar/scripts/vpn_status.sh",
+    "exec": "~/.config/waybar/scripts/target-vpn.sh",
     "interval": 2,
     "return-type": "json",
     "format": "{}",
     "tooltip": true,
-    "on-click": "sh ~/dotfiles/.config/waybar/scripts/vpn_toggle.sh"
+    "on-click": "sh ~/dotfiles/.config/waybar/scripts/toggle-target-vpn.sh"
   },
 
   "hyprland/workspaces": {
@@ -87,15 +87,15 @@
       "warning": 30,
       "critical": 15
     },
-    "format": "{icon}  {capacity}%",
-    "format-full": "{icon}  {capacity}%",
+    "format": "{icon} {capacity}%",
+    "format-full": "{icon} {capacity}%",
     "format-charging": "󰢝  {capacity}%",
-    "format-plugged": "󰂄  {capacity}%",
-    "format-alt": "{time}  {icon}",
+    "format-plugged": "󰂄 {capacity}%",
+    "format-alt": "{time} {icon}",
     "format-icons": ["", "", "", "", ""]
   },
   "clock": {
-    "format": "{:%H:%M | %e %B} ",
+    "format": "{:%H:%M  | %e %B} ",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": "{:%Y-%m-%d}"
   }

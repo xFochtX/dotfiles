@@ -28,6 +28,7 @@ imagemagick
 inotify-tools
 jdk-openjdk
 jemalloc
+john
 jq
 julia
 kitty
@@ -46,6 +47,7 @@ neovim
 networkmanager
 nmap
 nodejs
+noto-fonts-emoji
 npm
 obsidian
 openbsd-netcat
@@ -83,6 +85,7 @@ texlive-basic
 tftp-hpa
 tk
 tree
+ttf-jetbrains-mono-nerd
 unzip
 upx
 virtualbox

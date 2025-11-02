@@ -7,4 +7,4 @@ if [ -z "$1" ]; then
 fi
 
 # Copia el contenido del archivo al portapapeles
-xclip -selection clipboard <"$1"
+wl-copy <"$1"

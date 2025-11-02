@@ -1,5 +1,6 @@
 google-chrome
 gtkmm
+rockyou
 tofi
 uefitool
 vmware-keymaps

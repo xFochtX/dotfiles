@@ -39,6 +39,7 @@ rm -rf ~/.config/nvim
 ln -sf "$DOTFILES/opt/nvim" ~/.config/nvim
 ln -sf "$DOTFILES/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES/.p10k.zsh" ~/.p10k.zsh
+ln -sf "$DOTFILES/.latexmkrc" ~/.latexmkrc
 
 echo "Ejecutando configuración adicional..."
 bash "$DOTFILES/scripts/systemd/enable-services.sh"

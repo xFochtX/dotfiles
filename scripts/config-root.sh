@@ -4,6 +4,7 @@ set -e
 echo "Creando enlaces simbólicos para root en carpeta dotfiles..."
 sudo ln -sf "$DOTFILES/.zshrc" /root/.zshrc
 sudo ln -sf "$DOTFILES/.p10k.zsh" /root/.p10k.zsh
+sudo ln -sf "$DOTFILES/.latexmkrc" /root/.latexmkrc
 sudo rm -rf /root/.config/
 sudo mkdir /root/.config
 sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/nvim

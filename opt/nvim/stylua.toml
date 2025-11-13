@@ -1,3 +1,19 @@
-indent_type = "Spaces"
-indent_width = 2
-column_width = 120
+# Tipos de indentación
+indent_type = "Spaces" # Usa espacios en vez de tabs
+indent_width = 2       # 2 espacios por nivel de indentación
+
+# Ancho de línea
+column_width = 100    # Longitud máxima de línea antes de ajustar
+line_endings = "Unix" # Asegura saltos de línea tipo Unix (\n)
+
+# Estilo de código
+quote_style = "AutoPreferDouble" # Prefiere comillas dobles donde tenga sentido
+trailing_comma = "Always"        # Coma al final de listas/tablas para difs limpios
+call_args_parens = "Always"      # Siempre paréntesis en llamadas a funciones
+
+# Opciones de estilo de tablas
+table_separator = "Comma"       # Separador de tablas con comas
+table_separator_trailing = true # Permite coma al final
+
+# Otras opciones útiles
+column_limit_soft = true # Flexibilidad para líneas largas si es necesario

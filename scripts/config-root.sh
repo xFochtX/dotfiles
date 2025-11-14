@@ -8,6 +8,7 @@ sudo ln -sf "$DOTFILES/.latexmkrc" /root/.latexmkrc
 sudo rm -rf /root/.config/
 sudo mkdir /root/.config
 sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/nvim
+sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/obsidian
 
 for file in "$DOTFILES/bin"/*; do
   sudo ln -sf "$file" /usr/local/bin/$(basename "$file")

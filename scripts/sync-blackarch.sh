@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # scripts/sync-blackarch.sh
-# Añade/sincroniza repositorio BlackArch solo si no está ya configurado.
-# Actualiza pacman al final.
+# Añade/sincroniza repositorio BlackArch
+# Primera vez: instala todo y actualiza
+# Veces siguientes: solo sincroniza bases de datos
 
 set -euo pipefail
 
@@ -14,14 +15,12 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Función para detectar si blackarch está ya agregado en pacman.conf o includes
+# Función para detectar si BlackArch ya está agregado
 is_blackarch_added() {
   # Busca [blackarch] en pacman.conf o en archivos incluidos
   if grep -q "^\[blackarch\]" /etc/pacman.conf 2>/dev/null; then
     return 0
   fi
-  # También buscar en includes (opcional)
-  # Leer includes de pacman.conf si existen
   includes=$(grep -E "^\s*Include\s*=" /etc/pacman.conf | sed 's/Include\s*=\s*//g' | tr -d '"')
   for inc in $includes; do
     if grep -q "^\[blackarch\]" "$inc" 2>/dev/null; then
@@ -32,21 +31,22 @@ is_blackarch_added() {
 }
 
 echo "-> Comprobando herramientas..."
-if ! command -v curl >/dev/null 2>&1; then
+command -v curl >/dev/null || {
   echo "curl no encontrado. Instalando curl..."
-  sudo pacman -S --noconfirm curl
-fi
+  sudo pacman -S --needed curl --noconfirm
+}
 
 if is_blackarch_added; then
-  echo "-> El repositorio BlackArch ya está configurado. Solo sincronizando bases de datos..."
+  echo "-> Repositorio BlackArch ya está configurado. Sincronizando solo bases de datos..."
+  sudo pacman -Sy --noconfirm
 else
   echo "-> Repositorio BlackArch no detectado. Descargando y ejecutando strap.sh..."
   curl -fsSL "$STRAP_URL" -o "$STRAP"
   chmod +x "$STRAP"
   sudo bash "$STRAP"
-fi
 
-echo "-> Forzando sincronización de las bases de datos de pacman..."
-sudo pacman -Syyu --noconfirm
+  echo "-> Actualizando sistema completo luego de agregar BlackArch..."
+  sudo pacman -Syu --noconfirm
+fi
 
 echo "-> Repositorio BlackArch sincronizado correctamente."

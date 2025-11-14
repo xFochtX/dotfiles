@@ -14,8 +14,6 @@ bash "$DOTFILES/scripts/install-packages/00-install.sh"
 echo "Reconstruyendo la caché de fuentes..."
 fc-cache -fv
 
-mkdir -p "$DOTFILES/.config/obsidian"
-
 echo "Creando enlaces simbólicos..."
 
 mkdir -p ~/.config/systemd/user
@@ -35,6 +33,8 @@ rm -rf ~/.config/hypr
 ln -sf "$DOTFILES/.config/hypr" ~/.config/hypr
 rm -rf ~/.config/waybar
 ln -sf "$DOTFILES/.config/waybar" ~/.config/waybar
+rm -rf ~/.config/obsidian
+ln -sf "$DOTFILES/.config/obsidian" ~/.config/obsidian
 rm -rf ~/.config/nvim
 ln -sf "$DOTFILES/opt/nvim" ~/.config/nvim
 ln -sf "$DOTFILES/.zshrc" ~/.zshrc

@@ -27,7 +27,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ZSH Syntax Highlighting Plugin
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# ZHS Sudo Plugin
+# ZSH Sudo Plugin
 source "$DOTFILES/opt/sudo-plugin/zsh-sudo.zsh"
 
 # Cargar funciones personalizadas

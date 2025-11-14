@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-WALLPAPER_DIR="$HOME/dotfiles/assets/wallpapers"
+#WALLPAPER_DIR="$HOME/dotfiles/assets/wallpapers"
+WALLPAPER_DIR="/usr/share/backgrounds"
 MON1="eDP-1"
 MON2="HDMI-A-1"
 

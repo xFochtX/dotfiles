@@ -80,3 +80,6 @@ screencopy
 libexec
 lib64
 Autostart
+PipeWire
+NetworkManager
+SDDM

@@ -24,7 +24,10 @@ sudo mkdir -p /root/.config
 sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/nvim
 
 # Obsidian
-sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/obsidian
+sudo ln -sf "$DOTFILES/.config/obsidian" /root/.config/obsidian
+
+# Theme Sddm
+sudo ln -sf "$DOTFILES/etc/sddm.conf" /etc/sddm.conf
 
 # ----------------------------
 # Binarios personalizados

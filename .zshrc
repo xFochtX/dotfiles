@@ -20,7 +20,6 @@ for file in "$DOTFILES/zsh/aliases"/*.zsh; do
   source "$file"
 done
 
-
 # ZSH AutoSuggestions Plugin
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
@@ -76,6 +75,10 @@ export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
 bindkey "\e[3~" delete-char
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
+
+# Editor por defecto
+export EDITOR=nvim
+export VISUAL=nvim
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

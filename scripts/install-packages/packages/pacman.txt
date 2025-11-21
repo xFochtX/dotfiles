@@ -125,6 +125,7 @@ xclip
 xdg-desktop-portal
 xdg-desktop-portal-hyprland
 xsel
+yt-dlp
 zathura
 zathura-pdf-mupdf
 zellij

@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Función de ayuda
+help() {
+  echo "Uso: $0 -n <nombre> -l <link> [-d <directorio>]"
+  echo ""
+  echo "Parámetros obligatorios:"
+  echo "  -n   Nombre que tendrá el archivo MP3"
+  echo "  -l   Enlace de YouTube a descargar"
+  echo ""
+  echo "Parámetros opcionales:"
+  echo "  -d   Carpeta donde guardar el MP3 (por defecto: carpeta actual)"
+  exit 1
+}
+
+# Variables por defecto
+DESTINO="$(pwd)"
+NOMBRE=""
+LINK=""
+
+# Parsear opciones
+while getopts ":n:l:d:" opt; do
+  case $opt in
+  n) NOMBRE="$OPTARG" ;;
+  l) LINK="$OPTARG" ;;
+  d) DESTINO="$OPTARG" ;;
+  *) help ;;
+  esac
+done
+
+# Verificar que se proporcionaron las opciones obligatorias
+if [[ -z "$NOMBRE" || -z "$LINK" ]]; then
+  echo "Error: Parámetros '-n' y '-l' son obligatorios."
+  help
+fi
+
+# Crear carpeta de destino si no existe
+mkdir -p "$DESTINO"
+
+# Descargar y convertir a MP3
+if yt-dlp --no-playlist -x --audio-format mp3 --audio-quality 0 -o "$DESTINO/$NOMBRE.%(ext)s" "$LINK"; then
+  echo "Descarga completada:"
+  echo "Archivo guardado en: $DESTINO/$NOMBRE.mp3"
+else
+  echo "Error: la descarga falló. Revisa la URL o tu conexión."
+  exit 1
+fi

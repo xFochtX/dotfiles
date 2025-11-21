@@ -1,0 +1,5 @@
+"Veridis Quo (LoFi)","https://www.youtube.com/watch?v=W7LfsytzbkA&list=RDW7LfsytzbkA&start_radio=1"
+"Veridis Quo","https://www.youtube.com/watch?v=TCd6PfxOy0Y&list=RDTCd6PfxOy0Y&start_radio=1"
+"On Melancholy Hill","https://www.youtube.com/watch?v=BGn2oo-0Dqc&list=RDBGn2oo-0Dqc&start_radio=1"
+"Doors Light Funk (LoFi)","https://www.youtube.com/watch?v=3q-ANcLOmdw&list=RD3q-ANcLOmdw&start_radio=1"
+"Nerso & Verse","https://www.youtube.com/watch?v=5qI0r1ZycTE"

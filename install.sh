@@ -25,7 +25,7 @@ bash "$DOTFILES/scripts/systemd/enable-services.sh"
 #bash "$DOTFILES/scripts/systemd/enable-timers.sh"
 bash scripts/adjust-volume.sh
 
-#sudo usermod --shell /usr/bin/zsh $(whoami)
+sudo usermod --shell /usr/bin/zsh $(whoami)
 
 echo "Ejecutando configuración para root..."
 sudo DOTFILES="$DOTFILES" bash scripts/links/root.sh

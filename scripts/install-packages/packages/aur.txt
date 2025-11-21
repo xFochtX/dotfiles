@@ -1,6 +1,7 @@
 google-chrome
 gtkmm
 rockyou
+sddm-astronaut-theme
 tofi
 uefitool
 vmware-keymaps

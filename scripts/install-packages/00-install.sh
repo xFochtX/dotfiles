@@ -2,7 +2,7 @@
 set -e
 
 echo "Instalando paquetes de pacman..."
-sudo pacman -S --needed - --noconfirm <"$DOTFILES/scripts/install-packages/packages/pacman.txt" &>/dev/null
+sudo pacman -S --needed --noconfirm $(<"$DOTFILES/scripts/install-packages/packages/pacman.txt") &>/dev/null
 
 echo "Instalando paquetes de AUR con paru..."
 

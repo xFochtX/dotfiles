@@ -1,0 +1,8 @@
+#!/bin/bash
+
+THEME_DIR="/usr/share/sddm/themes/sddm-astronaut-theme/Themes"
+TARGET="$THEME_DIR/random-theme.conf"
+
+RANDOM_THEME=$(ls "$THEME_DIR"/*.conf | shuf -n 1)
+
+ln -sf "$RANDOM_THEME" "$TARGET"

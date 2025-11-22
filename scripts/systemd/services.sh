@@ -28,4 +28,7 @@ sudo systemctl enable --now NetworkManager.service
 # SDDM (Display Manager)
 sudo systemctl enable sddm.service
 
+# SDDM Random Theme
+sudo systemctl enable --now sddm-random-theme.service
+
 echo "Todos los servicios fueron activados correctamente."

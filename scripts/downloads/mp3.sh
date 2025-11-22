@@ -1,7 +1,11 @@
 #!/bin/bash
+set -euo pipefail
+
+# Detecta la ruta absoluta del directorio donde está este script
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Archivo con la lista de música (formato CSV: "Nombre","URL")
-LISTA="list-mp3.txt"
+LISTA="$BASE_DIR/list-mp3.txt"
 
 # Verificar que el archivo existe
 if [[ ! -f "$LISTA" ]]; then
@@ -19,7 +23,7 @@ while IFS=, read -r NOMBRE LINK; do
   LINK=$(echo "$LINK" | sed 's/^"//;s/"$//')
 
   echo "Descargando: $NOMBRE"
-  # Llamar al script download-yt-mp3 con las opciones
-  /usr/local/bin/downloadi-yt-mp3 -n "$NOMBRE" -l "$LINK" -d "$DESTINO"
+  # Llamar al script youtube-to-mp3 con las opciones
+  /usr/local/bin/youtube-to-mp3 -n "$NOMBRE" -l "$LINK" -d "$DESTINO"
   echo "-----------------------------------------"
 done <"$LISTA"

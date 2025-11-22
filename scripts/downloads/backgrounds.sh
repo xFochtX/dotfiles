@@ -11,8 +11,6 @@ links=(
   "https://w.wallhaven.cc/full/d6/wallhaven-d69eom.jpg"
   "https://w.wallhaven.cc/full/7j/wallhaven-7jgyre.jpg"
   "https://w.wallhaven.cc/full/rq/wallhaven-rq75r7.jpg"
-  "https://w.wallhaven.cc/full/md/wallhaven-mdryp1.jpg"
-  "https://w.wallhaven.cc/full/73/wallhaven-73ml69.jpg"
   "https://w.wallhaven.cc/full/eo/wallhaven-eolgqk.jpg"
   "https://w.wallhaven.cc/full/9d/wallhaven-9d62lx.jpg"
   "https://w.wallhaven.cc/full/w8/wallhaven-w8j677.jpg"
@@ -23,7 +21,6 @@ links=(
 # Descargar cada imagen directamente
 for url in "${links[@]}"; do
   filename=$(basename "$url") # Extrae el nombre del archivo de la URL
-  echo "🔽 Descargando $filename..."
 
   sudo curl -A "Mozilla/5.0" -s --fail "$url" -o "$DEST_DIR/$filename"
   if [ $? -ne 0 ]; then

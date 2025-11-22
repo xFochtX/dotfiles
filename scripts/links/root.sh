@@ -26,7 +26,11 @@ sudo ln -sf "$DOTFILES/opt/nvim" /root/.config/nvim
 # Obsidian
 sudo ln -sf "$DOTFILES/.config/obsidian" /root/.config/obsidian
 
-# Theme Sddm
+# Servicio SDDM Random Theme
+echo "Instalando servicio sddm-random-theme..."
+sudo install -Dm644 "$DOTFILES/.config/systemd/system/sddm-random-theme.service" /etc/systemd/system/sddm-random-theme.service
+
+# Theme sddm
 sudo ln -sf "$DOTFILES/etc/sddm.conf" /etc/sddm.conf
 
 # ----------------------------

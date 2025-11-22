@@ -20,14 +20,17 @@ bash "$DOTFILES/scripts/links/configs.sh"
 echo "Creando enlaces simbólicos de systemd..."
 bash "$DOTFILES/scripts/links/systemd.sh"
 
+echo "Ejecutando configuración para root..."
+sudo DOTFILES="$DOTFILES" bash scripts/links/root.sh
+
 echo "Ejecutando configuración adicional..."
-bash "$DOTFILES/scripts/systemd/enable-services.sh"
-#bash "$DOTFILES/scripts/systemd/enable-timers.sh"
+bash "$DOTFILES/scripts/systemd/services.sh"
+#bash "$DOTFILES/scripts/systemd/timers.sh"
 bash scripts/adjust-volume.sh
 
 sudo usermod --shell /usr/bin/zsh $(whoami)
 
-echo "Ejecutando configuración para root..."
-sudo DOTFILES="$DOTFILES" bash scripts/links/root.sh
+echo "Descargando material complementario..."
+sudo bash "$DOTFILES/scripts/downloads/00-downloads.sh"
 
 echo "Instalación completa."

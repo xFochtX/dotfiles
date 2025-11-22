@@ -1,0 +1,10 @@
+[Unit]
+Description=Select random SDDM theme on boot
+Before=sddm.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/sddm-random-theme
+
+[Install]
+WantedBy=multi-user.target

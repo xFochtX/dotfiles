@@ -57,6 +57,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 -- ===============================
 require("core.options")
 require("core.autocmds")
+require("core.nodejs")
 
 -- ===============================
 -- Configuración de plugins con lazy.nvim
@@ -134,4 +135,3 @@ require("lazy").setup({
     }
   }
 })
-

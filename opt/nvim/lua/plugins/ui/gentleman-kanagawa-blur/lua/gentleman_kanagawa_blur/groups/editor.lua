@@ -8,7 +8,7 @@ return {
 
 	-- Elementos de UI
 	ColorColumn = { bg = p.gray1 },
-	CursorLine = { bg = p.gray1 },
+	CursorLine = { bg = "NONE" },
 	Conceal = { fg = p.gray1 },
 	SignColumn = { bg = p.bg, fg = p.fg_muted },
 	FoldColumn = { bg = p.bg, fg = p.fg_muted },
@@ -57,7 +57,7 @@ return {
 
 	-- Otros
 	Folded = { fg = p.gray4 },
-	MatchParen = { fg = p.accent, bg = p.surface1, bold = true },
+	MatchParen = { fg = p.paren_highlight, bg = p.surface1, bold = true },
 	NonText = { fg = p.fg_muted },
 	FloatBorder = { fg = p.gray5, bg = p.bg },
 	QuickFixLine = { fg = p.red, bg = p.surface1, bold = true },

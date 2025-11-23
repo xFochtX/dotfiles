@@ -8,5 +8,5 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Ejecutar los scripts desde su ubicación absoluta
 bash "$BASE_DIR/backgrounds.sh"
-#bash "$BASE_DIR/secLists.sh"
+bash "$BASE_DIR/secLists.sh"
 bash "$BASE_DIR/mp3.sh"

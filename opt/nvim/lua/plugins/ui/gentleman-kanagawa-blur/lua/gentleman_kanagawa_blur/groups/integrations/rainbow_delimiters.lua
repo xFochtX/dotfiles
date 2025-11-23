@@ -1,6 +1,6 @@
 local p = require("gentleman_kanagawa_blur.palette")
 return {
-	RainbowDelimiterRed = { fg = p.variant, bg = p.bg },
+	RainbowDelimiterRed = { fg = p.accent, bg = p.bg },
 	RainbowDelimiterYellow = { fg = p.string, bg = p.bg },
 	RainbowDelimiterBlue = { fg = p.blue, bg = p.bg },
 	RainbowDelimiterOrange = { fg = p.operator, bg = p.bg },

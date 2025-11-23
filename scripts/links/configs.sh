@@ -24,6 +24,9 @@ ln -sf "$DOTFILES/opt/nvim" "$HOME/.config/nvim"
 rm -rf "$HOME/.config/kitty"
 ln -sf "$DOTFILES/.config/kitty" "$HOME/.config/kitty"
 
+# Hyprshot
+mkdir -p "$HOME/Pictures/Screenshots"
+
 # Hyprland
 rm -rf "$HOME/.config/hypr"
 ln -sf "$DOTFILES/.config/hypr" "$HOME/.config/hypr"

@@ -5,12 +5,12 @@ return {
       require("scrollbar").setup({
         handle = {
           color = "#666666",
-          hide_if_all_visible = true,
+          hide_if_all_visible = false,
         },
         marks = {
-          Search = { color = "#FF0000" },
+          Search = { color = "#FFA500" },
           Error = { color = "#FF0000" },
-          Warn = { color = "#FFA500" },
+          Warn = { color = "#FFFF00" },
           Info = { color = "#00FFFF" },
           Hint = { color = "#FFFFFF" },
         },

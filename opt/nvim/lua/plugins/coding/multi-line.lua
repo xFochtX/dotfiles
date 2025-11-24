@@ -1,10 +1,23 @@
--- This file contains the configuration for the vim-multiple-cursors plugin in Neovim.
+-- ──────────────────────────────────────────────────────────────────────────────
+-- vim-multiple-cursors
+-- ------------------------------------------------------------------------------
+-- Plugin que permite usar múltiples cursores en Vim/Neovim, facilitando la
+-- edición simultánea de varias líneas o palabras. Ideal para reemplazos masivos
+-- o modificaciones repetitivas en varias ubicaciones del buffer.
+--
+-- FUNCIONALIDAD:
+--   • Añade cursores adicionales para editar múltiples partes del texto al mismo tiempo.
+--   • Compatible con movimientos, búsqueda y sustituciones simultáneas.
+--   • Facilita refactorizaciones rápidas o edición en paralelo.
+--   • Integración con atajos de teclado para iniciar, añadir y quitar cursores.
+--
+-- CONFIGURACIÓN:
+--   No requiere configuración básica para funcionar.
+--   Se puede personalizar mediante keymaps según preferencias del usuario.
+--
 
 return {
   {
-    -- Plugin: vim-multiple-cursors
-    -- URL: https://github.com/terryma/vim-multiple-cursors
-    -- Description: A Vim plugin that allows multiple cursors for simultaneous editing.
     "terryma/vim-multiple-cursors",
   },
 }

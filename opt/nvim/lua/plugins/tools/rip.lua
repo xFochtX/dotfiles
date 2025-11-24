@@ -1,22 +1,38 @@
--- This file contains the configuration for the nvim-rip-substitute plugin in Neovim.
+-- ──────────────────────────────────────────────────────────────────────────────
+-- nvim-rip-substitute
+-- ------------------------------------------------------------------------------
+-- Plugin que permite realizar sustituciones en archivos usando ripgrep desde
+-- Neovim. Facilita reemplazos rápidos en el buffer actual o en múltiples archivos,
+-- con soporte para previsualización y confirmación de cambios.
+--
+-- FUNCIONALIDAD:
+--   • Sustituciones rápidas usando la potencia de ripgrep.
+--   • Compatible con buffers individuales o rangos visuales.
+--   • Previsualización de resultados antes de confirmar cambios.
+--   • Integración con keymaps para disparar la función desde Neovim.
+--
+-- CONFIGURACIÓN:
+--   cmd   → Comando para invocar el plugin manualmente (:RipSubstitute).
+--   keys  → Atajos para ejecutar sustituciones:
+--             <leader>fs → Ejecuta la función de sustitución en modo normal o visual.
+--   mode  → Define en qué modos están activos los keymaps ("n" y "x").
+--   desc  → Descripción de la acción asociada al keymap.
+--
 
 return {
-  -- Plugin: nvim-rip-substitute
-  -- URL: https://github.com/chrisgrieser/nvim-rip-substitute
-  -- Description: A Neovim plugin for performing substitutions with ripgrep.
   "chrisgrieser/nvim-rip-substitute",
 
-  cmd = "RipSubstitute", -- Command to trigger the plugin
+  cmd = "RipSubstitute",
 
   keys = {
     {
-      -- Keybinding to perform a ripgrep substitution
       "<leader>fs",
       function()
-        require("rip-substitute").sub() -- Call the substitution function from the plugin
+        require("rip-substitute").sub()
       end,
-      mode = { "n", "x" }, -- Enable the keybinding in normal and visual modes
-      desc = " rip substitute", -- Description for the keybinding
+      mode = { "n", "x" },
+      desc = " rip substitute",
     },
   },
 }
+

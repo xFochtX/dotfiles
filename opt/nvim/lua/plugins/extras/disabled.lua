@@ -1,41 +1,48 @@
--- This file contains the configuration for disabling specific Neovim plugins.
+-- ──────────────────────────────────────────────────────────────────────────────
+-- Disabled Neovim Plugins
+-- ------------------------------------------------------------------------------
+-- Este archivo contiene la configuración para deshabilitar ciertos plugins
+-- de Neovim que no se desean cargar, manteniendo la configuración limpia y
+-- evitando conflictos o consumo innecesario de recursos.
+--
+-- FUNCIONALIDAD:
+--   • Permite desactivar plugins individuales mediante la opción `enabled = false`.
+--   • Mantiene referencias de los plugins en caso de que quieras habilitarlos
+--     en el futuro.
+--   • Incluye documentación básica de cada plugin (opcional).
+--
+-- CONFIGURACIÓN:
+--   enabled → false para desactivar el plugin.
+--   Mantener el bloque del plugin permite reactivarlo fácilmente más adelante.
+--
 
 return {
   {
-    -- Plugin: bufferline.nvim
-    -- URL: https://github.com/akinsho/bufferline.nvim
-    -- Description: A snazzy buffer line (with tabpage integration) for Neovim.
     "akinsho/bufferline.nvim",
-    enabled = false, -- Disable this plugin
+    enabled = false, -- Bufferline: barra de buffers con integración de tabpages
   },
   {
-    -- Plugin para mejorar la experiencia de edición en Neovim
-    -- URL: https://github.com/yetone/avante.nvim
-    -- Description: Este plugin ofrece una serie de mejoras y herramientas para optimizar la edición de texto en Neovim.
     "yetone/avante.nvim",
-    enabled = false,
+    enabled = false, -- Mejora la experiencia de edición en Neovim
   },
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    enabled = false,
+    enabled = false, -- Chat de Copilot deshabilitado
   },
   {
     "sudo-tee/opencode.nvim",
-    enabled = false,
+    enabled = false, -- Plugin deshabilitado
   },
   {
     "olimorris/codecompanion.nvim",
-    enabled = false,
+    enabled = false, -- Plugin deshabilitado
   },
   {
     "tris203/precognition.nvim",
-    enabled = false,
+    enabled = false, -- Plugin deshabilitado
   },
   {
-    -- Plugin: claude-code.nvim
-    -- URL: https://github.com/greggh/claude-code.nvim
-    -- Description: Neovim integration for Claude Code AI assistant
     "greggh/claude-code.nvim",
-    enabled = false,
+    enabled = false, -- Integración con Claude Code AI deshabilitada
   },
 }

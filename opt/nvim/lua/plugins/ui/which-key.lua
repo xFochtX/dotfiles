@@ -1,31 +1,44 @@
--- This file contains the configuration for the which-key.nvim plugin in Neovim.
+-- ──────────────────────────────────────────────────────────────────────────────
+-- which-key.nvim
+-- ------------------------------------------------------------------------------
+-- Plugin que muestra un panel flotante con las posibles combinaciones de teclas
+-- a medida que comienzas a escribir un atajo. Esto ayuda a descubrir y recordar
+-- mapeos sin necesidad de memorizar todo.
+--
+-- FUNCIONALIDAD:
+--   • Muestra sugerencias de combinaciones según el prefijo que el usuario teclea.
+--   • Agrupa y organiza atajos bajo nombres de categorías.
+--   • Permite definir qué teclas disparan la apertura del panel.
+--
+-- CONFIGURACIÓN:
+--   timeout     → Activa el tiempo de espera para detectar secuencias de teclas.
+--   timeoutlen  → Tiempo (en ms) que espera Neovim antes de interpretar la secuencia.
+--   <leader>?   → Abre el panel de which-key para el contexto local.
+--   <leader>o   → Define un grupo de atajos bajo la categoría "Obsidian".
+--
 
 return {
-  -- Plugin: which-key.nvim
-  -- URL: https://github.com/folke/which-key.nvim
-  -- Description: A Neovim plugin that displays a popup with possible keybindings of the command you started typing.
-  "folke/which-key.nvim",
+  {
+    "folke/which-key.nvim",
 
-  event = "VeryLazy", -- Load this plugin on the 'VeryLazy' event
+    event = "VeryLazy",
 
-  init = function()
-    -- Set the timeout for key sequences
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300 -- Set the timeout length to 300 milliseconds
-  end,
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
 
-  keys = {
-    {
-      -- Keybinding to show which-key popup
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false }) -- Show the which-key popup for local keybindings
-      end,
-    },
-    {
-      -- Define a group for Obsidian-related commands
-      "<leader>o",
-      group = "Obsidian",
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+      },
+      {
+        "<leader>o",
+        group = "Obsidian",
+      },
     },
   },
 }

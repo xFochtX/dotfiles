@@ -23,7 +23,6 @@ require("core.nodejs").setup({ silent = true })
 -- LazyVim agrega la configuración por defecto y extras opcionales.
 require("core.lazy")
 
-
 -- ---------------------------------------------------------------
 -- 3️⃣ Opciones de temporización de teclas
 -- ---------------------------------------------------------------

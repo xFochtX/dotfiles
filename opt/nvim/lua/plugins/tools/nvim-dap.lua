@@ -1,32 +1,49 @@
--- This file contains the configuration for the nvim-dap plugin in Neovim.
+-- ──────────────────────────────────────────────────────────────────────────────
+-- nvim-dap (Debug Adapter Protocol)
+-- ------------------------------------------------------------------------------
+-- Plugin que proporciona soporte de depuración en Neovim mediante el protocolo
+-- DAP. Permite colocar breakpoints, ejecutar paso a paso, inspeccionar variables,
+-- ver stacks, manejar sesiones, usar REPL y conectar adaptadores específicos
+-- para cada lenguaje.
+--
+-- FUNCIONALIDAD:
+--   • Control de ejecución: continuar, pausar, detener, ejecutar hasta cursor, etc.
+--   • Breakpoints: simples, condicionales, con logs, etc.
+--   • Integración con UI adicional mediante 'nvim-dap-ui'.
+--   • Texto virtual en línea con información de variables mediante 'nvim-dap-virtual-text'.
+--   • Soporte opcional para configuraciones desde '.vscode/launch.json'.
+--   • Carga de variables de entorno desde $ENV y archivos .env.
+--
+-- CONFIGURACIÓN:
+--   recommended     → Marca este plugin como recomendado por LazyVim.
+--   dependencies    → Añade UI y soporte de texto virtual para depuración.
+--   keys            → Gran conjunto de atajos agrupados bajo <leader>d.
+--                     Ejemplos:
+--                       <leader>db → Toggle breakpoint.
+--                       <leader>dc → Continue.
+--                       <leader>di → Step Into.
+--                       <leader>dO → Step Over.
+--                       <leader>dr → Toggle REPL.
+--   launch.json     → Si existe .vscode/launch.json, se carga automáticamente.
+--   env loader      → Añade variables de entorno del sistema y de un archivo .env.
+--
 
 return {
   {
-    -- Plugin: nvim-dap
-    -- URL: https://github.com/mfussenegger/nvim-dap
-    -- Description: Debug Adapter Protocol client implementation for Neovim.
     "mfussenegger/nvim-dap",
-    recommended = true, -- Recommended plugin
+    recommended = true,
     desc = "Debugging support. Requires language specific adapters to be configured. (see lang extras)",
 
     dependencies = {
-      -- Plugin: nvim-dap-ui
-      -- URL: https://github.com/rcarriga/nvim-dap-ui
-      -- Description: A UI for nvim-dap.
       "rcarriga/nvim-dap-ui",
-
-      -- Plugin: nvim-dap-virtual-text
-      -- URL: https://github.com/theHamsta/nvim-dap-virtual-text
-      -- Description: Virtual text for the debugger.
       {
         "theHamsta/nvim-dap-virtual-text",
-        opts = {}, -- Default options
+        opts = {},
       },
     },
 
-    -- Keybindings for nvim-dap
     keys = {
-      { "<leader>d", "", desc = "+debug", mode = { "n", "v" } }, -- Group for debug commands
+      { "<leader>d", "", desc = "+debug", mode = { "n", "v" } },
       {
         "<leader>dB",
         function()
@@ -151,15 +168,12 @@ return {
     config = function()
       local dap = require("dap")
 
-      -- Load mason-nvim-dap if available
       if LazyVim.has("mason-nvim-dap.nvim") then
         require("mason-nvim-dap").setup(LazyVim.opts("mason-nvim-dap.nvim"))
       end
 
-      -- Set highlight for DapStoppedLine
       vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
-      -- Define signs for DAP
       for name, sign in pairs(LazyVim.config.icons.dap) do
         sign = type(sign) == "table" and sign or { sign }
         vim.fn.sign_define(
@@ -168,26 +182,22 @@ return {
         )
       end
 
-      -- Setup DAP configuration using VsCode launch.json file
       local vscode = require("dap.ext.vscode")
       local json = require("plenary.json")
       vscode.json_decode = function(str)
         return vim.json.decode(json.json_strip_comments(str))
       end
 
-      -- Load launch configurations from .vscode/launch.json if it exists
-      if vim.fn.filereadable(".vscode/launch.json") then
+      if vim.fn.filereadable(".vscode/launch.json") == 1 then
         vscode.load_launchjs()
       end
 
-      -- Function to load environment variables
       local function load_env_variables()
         local variables = {}
         for k, v in pairs(vim.fn.environ()) do
           variables[k] = v
         end
 
-        -- Load variables from .env file manually
         local env_file_path = vim.fn.getcwd() .. "/.env"
         local env_file = io.open(env_file_path, "r")
         if env_file then
@@ -203,7 +213,6 @@ return {
         return variables
       end
 
-      -- Add the env property to each existing Go configuration
       for _, config in pairs(dap.configurations.go or {}) do
         config.env = load_env_variables
       end

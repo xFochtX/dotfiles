@@ -477,3 +477,17 @@ NvimTmuxNavigateRight
 NvimTmuxNavigateNext
 nvim_tmux_nav
 vim
+MBR
+LUKS
+GRUB_ENABLE_CRYPTODISK
+Preload
+GPT
+ESC
+videoinfo
+VBE
+gfxtheme
+gfx
+GRUB_SAVEDEFAULT
+GRUB_DISABLE_SUBMENU
+submenus
+uuid

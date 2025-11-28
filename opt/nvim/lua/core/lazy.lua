@@ -86,6 +86,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.lang.nix" },
     { import = "lazyvim.plugins.extras.lang.toml" },
     { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.lang.json"},
 
     -- Plugins de codificación
     { import = "lazyvim.plugins.extras.coding.mini-surround" },

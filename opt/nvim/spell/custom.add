@@ -468,3 +468,12 @@ ttimeoutlen
 24
 -
 UTF
+vim
+NvimTmuxNavigateLeft
+NvimTmuxNavigateDown
+NvimTmuxNavigateUp
+NvimTmuxNavigateLastActive
+NvimTmuxNavigateRight
+NvimTmuxNavigateNext
+nvim_tmux_nav
+vim

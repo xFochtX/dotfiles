@@ -16,13 +16,8 @@ vim.keymap.set({ "n" }, "<leader>uk", "<cmd>Screenkey<CR>")
 -- Open Terminal
 vim.keymap.set("n", "<leader>t", "<cmd>ToggleTerm<CR>", { desc = "Toggle terminal" })
 
--- LaTeX Keys
--- Mapear \ll para compilar con vimtex
-vim.api.nvim_set_keymap('n', '<leader>ll', '<cmd>VimtexCompile<CR>', { noremap = true, silent = true })
--- Mapear \lv para abrir PDF
-vim.api.nvim_set_keymap('n', '<leader>lv', '<cmd>VimtexView<CR>', { noremap = true, silent = true })
-
 ----- Tmux Navigation ------
+--[[
 local nvim_tmux_nav = require("nvim-tmux-navigation")
 
 vim.keymap.set("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft) -- Navigate to the left pane
@@ -31,6 +26,7 @@ vim.keymap.set("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp) -- Navigate to th
 vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight) -- Navigate to the right pane
 vim.keymap.set("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive) -- Navigate to the last active pane
 vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext) -- Navigate to the next pane
+--]]
 
 ----- OBSIDIAN -----
 vim.keymap.set("n", "<leader>oc", "<cmd>ObsidianCheck<CR>", { desc = "Obsidian Check Checkbox" })

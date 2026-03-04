@@ -9,17 +9,22 @@
   "modules-left": [
     "custom/arch",
     "custom/ip_local",
-    "custom/vpn"],
-  "modules-center": ["hyprland/workspaces"],
+    "custom/vpn",
+    "custom/target"
+  ],
+  "modules-center": [
+    "hyprland/workspaces"
+  ],
   "modules-right": [
     "pulseaudio",
     "cpu",
     "memory",
-    "temperature",
+    //"temperature",
     "battery",
     "clock"
   ],
   //Modules configuration
-
-  "include": ["~/.config/waybar/modules.json"]
+  "include": [
+    "~/.config/waybar/modules.json"
+  ]
 }

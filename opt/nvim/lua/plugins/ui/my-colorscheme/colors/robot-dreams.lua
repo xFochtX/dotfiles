@@ -1,0 +1,51 @@
+-- ──────────────────────────────────────────────────────────────────────────────
+-- robot-dreams.lua
+-- ------------------------------------------------------------------------------
+-- Archivo principal del esquema de colores "robot-dreams".
+--
+-- Este archivo existe en la carpeta `colors/` porque Neovim busca aquí los
+-- colores que se pueden cargar mediante el comando:
+--
+--     :colorscheme robot-dreams
+--
+-- FUNCIONALIDAD:
+--   • Punto de entrada del esquema de colores.
+--   • Llama internamente al módulo Lua que contiene toda la lógica del tema.
+--   • Permite que Neovim reconozca el tema como un colorscheme estándar.
+--
+-- MÉTODOS DEL MÓDULO PRINCIPAL:
+--   - load(): Aplica TODO lo relacionado con el tema, incluyendo:
+--       • Configuración de paleta de colores
+--       • Aplicación de grupos de resaltado
+--       • Configuraciones adicionales como transparencia, blur o variantes
+--     Este método es el "entry point completo", pensado para inicializar el tema
+--     de forma automática con todas sus características.
+--
+--   - colorscheme(): Aplica únicamente los colores (paleta + grupos),
+--     sin tocar configuraciones adicionales ni extras del módulo.  
+--     Se usa cuando el plugin tiene funcionalidades extendidas y quieres
+--     aplicar solo la parte visual.
+--
+-- POR QUÉ USAMOS load():
+--   - Al estar en `colors/`, Neovim espera que este archivo cargue TODO el
+--     esquema de colores.
+--   - load() garantiza que se ejecute la inicialización completa del tema, de
+--     modo que los colores, grupos y opciones del usuario queden correctamente
+--     aplicados.
+--   - colorscheme() podría no aplicar efectos adicionales (blur, variantes,
+--     transparencia), por lo que no es suficiente para esta fase de carga.
+--
+-- ESTRUCTURA DEL THEME:
+--   colors/robot-dreams.lua
+--       → Este archivo, que solo llama load()
+--
+-- MOTIVO DE EXISTIR:
+--   Este archivo NO define colores. Únicamente expone el tema para que Neovim
+--   pueda activarlo usando la infraestructura clásica de colorschemes.
+--
+-- CARGA:
+--   Al ejecutar :colorscheme robot-dreams,
+--   Neovim ejecuta automáticamente la línea inferior.
+--
+
+require("robot-dreams").load()

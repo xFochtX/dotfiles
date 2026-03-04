@@ -1,3 +1,5 @@
 /assets
 /opt/*
 !opt/nvim
+/.config/obsidian/*
+!/.config/obsidian/.gitkeep

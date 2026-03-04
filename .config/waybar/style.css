@@ -149,21 +149,30 @@ window#waybar {
     0 0 5px #26a65b;
 }
 
-#custom-local_ip {
+#custom-ip_local {
   transition: color 0.5s;
 }
 
-#custom-local_ip:hover {
+#custom-ip_local:hover {
   color: #1793d1;
 }
 
 #custom-vpn {
-  margin-right: 5px;
+  margin-right: 2px;
   transition: color 0.5s;
 }
 
 #custom-vpn:hover {
-  color: #1793d1;
+  color: #17d14b;
+}
+
+#custom-target {
+  margin-right: 10px;
+  transition: color 0.5s;
+}
+
+#custom-target:hover {
+  color: #d11717
 }
 
 /* VPN conectada */

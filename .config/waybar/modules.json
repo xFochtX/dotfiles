@@ -4,7 +4,6 @@
     "tooltip": true,
     "tooltip-format": "Arch"
   },
-
   "custom/ip_local": {
     "exec": "~/.config/waybar/scripts/ip-local.sh",
     "interval": 2,
@@ -13,16 +12,21 @@
     "tooltip": true,
     "on-click": "sh ~/dotfiles/.config/waybar/scripts/open-nmtui.sh"
   },
-
   "custom/vpn": {
-    "exec": "~/.config/waybar/scripts/target-vpn.sh",
-    "interval": 2,
+    "exec": "~/.config/waybar/scripts/vpn.sh",
+    "interval": 10,
     "return-type": "json",
     "format": "{}",
     "tooltip": true,
-    "on-click": "sh ~/dotfiles/.config/waybar/scripts/toggle-target-vpn.sh"
+    "on-click": "sh ~/dotfiles/.config/waybar/scripts/toggle-vpn.sh"
   },
-
+  "custom/target": {
+    "exec": "~/.config/waybar/scripts/target.sh",
+    "interval": 2,
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true
+  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,
@@ -55,7 +59,11 @@
       "phone": "",
       "portable": "",
       "car": "",
-      "default": ["", "", ""]
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "on-click": "pavucontrol"
   },
@@ -92,7 +100,13 @@
     "format-charging": "󰢝  {capacity}%",
     "format-plugged": "󰂄 {capacity}%",
     "format-alt": "{time} {icon}",
-    "format-icons": ["", "", "", "", ""]
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
   },
   "clock": {
     "format": "{:%H:%M  | %e %B} ",

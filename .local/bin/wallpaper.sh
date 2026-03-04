@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 WALLPAPER_DIR="/usr/share/backgrounds"
-MON1="eDP-1"
-MON2="HDMI-A-1"
+MONITORS=("eDP-1" "HDMI-A-1")
 
 # Esperar hasta que la variable HYPRLAND_INSTANCE_SIGNATURE esté presente
 for i in {1..10}; do
@@ -17,12 +16,42 @@ if [[ -z "$HYPRLAND_INSTANCE_SIGNATURE" ]]; then
   exit 1
 fi
 
-while true; do
-  WP1=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
-  WP2=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+get_monitor_id() {
+  local monitor_name="$1"
+  hyprctl monitors -j | jq -r --arg mon "$monitor_name" '.[] | select(.name == $mon) | .id'
+}
 
-  hyprctl hyprpaper reload "$MON1,$WP1"
-  hyprctl hyprpaper reload "$MON2,$WP2"
+# Devuelve 0 si el monitor tiene fullscreen activo
+monitor_has_fullscreen() {
+  local monitor_name="$1"
+  local monitor_id
+
+  monitor_id=$(get_monitor_id "$monitor_name")
+  [[ -z "$monitor_id" ]] && return 1
+
+  hyprctl clients -j | jq -e --argjson mid "$monitor_id" 'any(.[]; .fullscreen == 2 and .monitor == $mid)' >/dev/null
+}
+
+for MON in "${MONITORS[@]}"; do
+  if monitor_has_fullscreen "$MON"; then
+    echo "$MON tiene fullscreen"
+  else
+    echo "$MON libre"
+  fi
+done
+
+while true; do
+  for MON in "${MONITORS[@]}"; do
+    if monitor_has_fullscreen "$MON"; then
+      # Este monitor tiene video fullscreen -> No cambiar fondo de pantalla
+      continue
+    fi
+
+    WP=$(find "$WALLPAPER_DIR" -type f | shuf -n 1)
+
+    hyprctl hyprpaper preload "$WP"
+    hyprctl hyprpaper wallpaper "$MON,$WP"
+  done
 
   sleep 300
 done

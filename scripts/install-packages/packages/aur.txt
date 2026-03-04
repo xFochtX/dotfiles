@@ -1,5 +1,7 @@
 google-chrome
 gtkmm
+paru-debug
+protonvpn-cli
 rockyou
 sddm-astronaut-theme
 tofi

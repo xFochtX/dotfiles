@@ -47,8 +47,8 @@ return {
 	htmlEndTag = { fg = p.tag }, -- end tag />
 	htmlTitle = { fg = p.title }, -- title tag text
 	htmlTag = { fg = p.tag }, -- tag delimiters
-	htmlTagN = { fg = p.tag },
-	htmlTagName = { fg = p.tag }, -- tag text
+	htmlTagN = { fg = "#FF0000" },
+	htmlTagName = { fg = "#FFFF00" }, -- tag text
 	-- Diff
 	diffAdded = { fg = p.string },
 	diffRemoved = { fg = p.variable },

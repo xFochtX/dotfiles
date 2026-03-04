@@ -4,7 +4,9 @@ base-devel
 bat
 biber
 blackarch-mirrorlist
+brightnessctl
 burpsuite
+cava
 chromium
 clang
 composer
@@ -21,6 +23,8 @@ git
 go
 gobuster
 grub
+hydra
+hypridle
 hyprland
 hyprlock
 hyprpaper
@@ -41,11 +45,16 @@ linux-firmware
 linux-headers
 lsd
 luarocks
+man-db
+man-pages
+mariadb
 metasploit
+mpv
 nano
 ncurses5-compat-libs
 neovim
 networkmanager
+nix
 nmap
 nodejs
 noto-fonts-emoji
@@ -55,8 +64,8 @@ openbsd-netcat
 openssh
 open-vm-tools
 openvpn
+padbuster
 paru
-paru-debug
 pavucontrol
 perl-crypt-ssleay
 perl-net-ssleay
@@ -112,6 +121,7 @@ texlive-mathscience
 texlive-pictures
 texlive-publishers
 tftp-hpa
+tinyxxd
 tk
 tree
 ttf-jetbrains-mono-nerd

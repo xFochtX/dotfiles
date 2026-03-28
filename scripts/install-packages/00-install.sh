@@ -9,6 +9,7 @@ echo "Instalando paquetes de AUR con paru..."
 if ! command -v paru &>/dev/null; then
   echo "Paru no encontrado, instalando paru primero..."
   cd /tmp
+  rm -rf paru
   git clone https://aur.archlinux.org/paru.git
   cd paru
   makepkg -si --noconfirm

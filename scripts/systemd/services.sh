@@ -28,6 +28,12 @@ sudo systemctl enable --now NetworkManager.service
 # SDDM (Display Manager)
 sudo systemctl enable sddm.service
 
+# Gestión de energía
+sudo systemctl enable --now tlp.service
+
+# Control térmico CPU
+sudo systemctl enable --now thermald.service
+
 # SDDM Random Theme
 sudo systemctl enable --now sddm-random-theme.service
 

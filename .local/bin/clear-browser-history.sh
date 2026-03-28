@@ -16,6 +16,8 @@ chrome)
   if [ -f "$CHROME_HISTORY" ]; then
     # Borrar el historial de Chrome
     sqlite3 "$CHROME_HISTORY" "DELETE FROM urls;"
+    sqlite3 "$CHROME_HISTORY" "DELETE FROM visits;"
+    sqlite3 "$CHROME_HISTORY" "DELETE FROM top_sites;"
     echo "$(date): Historial de Chrome limpiado." >>"$LOG"
   else
     echo "$(date): Archivo de historial de Chrome no encontrado." >>"$LOG"
@@ -25,6 +27,8 @@ chromium)
   if [ -f "$CHROMIUM_HISTORY" ]; then
     # Borrar el historial de Chromium
     sqlite3 "$CHROMIUM_HISTORY" "DELETE FROM urls;"
+    sqlite3 "$CHROMIUM_HISTORY" "DELETE FROM visits;"
+    sqlite3 "$CHROMIUM_HISTORY" "DELETE FROM top_sites;"
     echo "$(date): Historial de Chromium limpiado." >>"$LOG"
   else
     echo "$(date): Archivo de historial de Chromium no encontrado." >>"$LOG"
@@ -38,6 +42,7 @@ firefox)
     if [ -f "$FIREFOX_HISTORY" ]; then
       # Borrar el historial de Firefox
       sqlite3 "$FIREFOX_HISTORY" "DELETE FROM moz_places;"
+      sqlite3 "$FIREFOX_HISTORY" "DELETE FROM moz_historyvisits;"
       echo "$(date): Historial de Firefox limpiado en el perfil $PROFILE." >>"$LOG"
     else
       echo "$(date): Archivo de historial de Firefox no encontrado en $PROFILE." >>"$LOG"

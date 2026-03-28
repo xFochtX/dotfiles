@@ -25,7 +25,7 @@ sudo DOTFILES="$DOTFILES" bash scripts/links/root.sh
 
 echo "Ejecutando configuración adicional..."
 bash "$DOTFILES/scripts/systemd/services.sh"
-#bash "$DOTFILES/scripts/systemd/timers.sh"
+bash "$DOTFILES/scripts/systemd/timers.sh"
 bash scripts/adjust-volume.sh
 
 sudo usermod --shell /usr/bin/zsh $(whoami)
@@ -36,4 +36,5 @@ bash "$DOTFILES/scripts/install-opt/00-install.sh"
 echo "Descargando material complementario..."
 sudo bash "$DOTFILES/scripts/downloads/00-downloads.sh"
 
+echo "[+] Actualice los mirrors para tener mejor latencia..."
 echo "Instalación completa."

@@ -175,6 +175,14 @@ window#waybar {
   color: #d11717
 }
 
+#custom-pacman_updates.warning {
+    color: #ff5555; /* rojo */
+}
+
+#custom-pacman_updates.success {
+    color: #50fa7b; /* verde */
+}
+
 /* VPN conectada */
 .custom-vpn-on {
   color: #1bbf3e;

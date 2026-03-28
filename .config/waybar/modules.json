@@ -27,6 +27,13 @@
     "format": "{}",
     "tooltip": true
   },
+  "custom/pacman_updates": {
+    "exec": "~/.config/waybar/scripts/pacman-updates.sh",
+    "interval": 300,
+    "return-type": "json",
+    "tooltip": true,
+    "on-click": "kitty -e sudo pacman -Syu"
+  },
   "hyprland/workspaces": {
     "disable-scroll": true,
     "all-outputs": true,

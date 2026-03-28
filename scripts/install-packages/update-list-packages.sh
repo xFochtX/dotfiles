@@ -12,6 +12,8 @@ pacman -Qm --quiet | awk '{print $1}' | sort >"$OUTDIR/aur.txt"
 
 echo "Restando paquetes AUR de paquetes oficiales para obtener solo paquetes oficiales puros..."
 comm -23 "$OUTDIR/pacman_raw.txt" "$OUTDIR/aur.txt" >"$OUTDIR/pacman.txt"
+# Eliminar paru si aparece
+sed -i '/^paru$/d' "$OUTDIR/pacman.txt"
 
 rm "$OUTDIR/pacman_raw.txt"
 

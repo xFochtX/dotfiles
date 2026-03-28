@@ -19,6 +19,7 @@
     "pulseaudio",
     "cpu",
     "memory",
+    "custom/pacman_updates",
     //"temperature",
     "battery",
     "clock"

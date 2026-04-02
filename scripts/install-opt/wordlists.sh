@@ -28,4 +28,8 @@ curl -L "https://raw.githubusercontent.com/h0tak88r/Wordlists/master/Headers.txt
 echo "Descargando headers.txt (headerpwn)..."
 curl -L "https://raw.githubusercontent.com/devanshbatham/headerpwn/main/headers.txt" -o "$DIR_HEADERS/devanshbatham"
 
+# Procesar archivo devanshbatham → solo headers
+echo "Procesando headers (quitando valores)..."
+awk -F':' '{print $1}' "$DIR_HEADERS/devanshbatham" >"$DIR_HEADERS/devanshbatham-headers"
+
 echo "Listo. Archivos disponibles en: $DIR_HEADERS"

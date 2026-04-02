@@ -6,10 +6,10 @@ local ui_path = vim.fn.stdpath("config") .. "/lua/plugins/ui"
 return {
   -- Tema principal desde la carpeta local
   {
-    dir = ui_path .. "/gentleman-kanagawa-blur",
-    --dir = ui_path .. "/my-colorscheme",
-    name = "gentleman-kanagawa-blur",
-    --name = "robot-dreams",
+    --dir = ui_path .. "/gentleman-kanagawa-blur",
+    dir = ui_path .. "/my-colorscheme",
+    --name = "gentleman-kanagawa-blur",
+    name = "robot-dreams",
     priority = 1000, -- se carga antes que otros plugins
   },
 
@@ -17,8 +17,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gentleman-kanagawa-blur",
-      --colorscheme = "robot-dreams",
+      --colorscheme = "gentleman-kanagawa-blur",
+      colorscheme = "robot-dreams",
     },
   },
 }

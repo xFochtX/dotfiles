@@ -1,0 +1,25 @@
+local p = require("robot_dreams.palette")
+
+return {
+	NotifyBackground = { fg = p.fg, bg = p.bg_dark },
+	NotifyERRORBorder = { fg = p.red, bg = p.bg_dark },
+	NotifyWARNBorder = { fg = p.yellow, bg = p.bg_dark },
+	NotifyINFOBorder = { fg = p.blue, bg = p.bg_dark },
+	NotifyDEBUGBorder = { fg = p.fg_muted, bg = p.bg_dark },
+	NotifyTRACEBorder = { fg = p.purple, bg = p.bg_dark },
+	NotifyERRORIcon = { fg = p.red },
+	NotifyWARNIcon = { fg = p.yellow },
+	NotifyINFOIcon = { fg = p.blue },
+	NotifyDEBUGIcon = { fg = p.fg_muted },
+	NotifyTRACEIcon = { fg = p.purple },
+	NotifyERRORTitle = { fg = p.red },
+	NotifyWARNTitle = { fg = p.yellow },
+	NotifyINFOTitle = { fg = p.blue },
+	NotifyDEBUGTitle = { fg = p.fg_muted },
+	NotifyTRACETitle = { fg = p.purple },
+	NotifyERRORBody = { fg = p.fg, bg = p.bg_dark },
+	NotifyWARNBody = { fg = p.fg, bg = p.bg_dark },
+	NotifyINFOBody = { fg = p.fg, bg = p.bg_dark },
+	NotifyDEBUGBody = { fg = p.fg, bg = p.bg_dark },
+	NotifyTRACEBody = { fg = p.fg, bg = p.bg_dark },
+}

@@ -620,3 +620,14 @@ no_anim
 px
 float
 SSD
+SSL
+Fastly
+ProxyUser
+Addr
+Proto
+fuzzear
+SAMEORIGIN
+charset
+unkeyed
+wordlists
+txt

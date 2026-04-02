@@ -5,27 +5,37 @@ DEST_DIR="/usr/share/backgrounds"
 sudo mkdir -p "$DEST_DIR"
 sudo chmod 755 "$DEST_DIR"
 
-# Lista de URLs directas de imágenes
-links=(
-  "https://w.wallhaven.cc/full/ly/wallhaven-ly9qzq.jpg"
-  "https://w.wallhaven.cc/full/d6/wallhaven-d69eom.jpg"
-  "https://w.wallhaven.cc/full/7j/wallhaven-7jgyre.jpg"
-  "https://w.wallhaven.cc/full/rq/wallhaven-rq75r7.jpg"
-  "https://w.wallhaven.cc/full/eo/wallhaven-eolgqk.jpg"
-  "https://w.wallhaven.cc/full/9d/wallhaven-9d62lx.jpg"
-  "https://w.wallhaven.cc/full/w8/wallhaven-w8j677.jpg"
-  "https://w.wallhaven.cc/full/5w/wallhaven-5w6p35.jpg"
-  "https://w.wallhaven.cc/full/6k/wallhaven-6k2ogx.jpg"
-)
+# Detecta la ruta absoluta del directorio donde está este script
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Descargar cada imagen directamente
-for url in "${links[@]}"; do
-  filename=$(basename "$url") # Extrae el nombre del archivo de la URL
+# Archivo con la lista de música (formato CSV: "Nombre","URL")
+LISTA="$BASE_DIR/list/backgrounds.txt"
 
-  sudo curl -A "Mozilla/5.0" -s --fail "$url" -o "$DEST_DIR/$filename"
-  if [ $? -ne 0 ]; then
-    echo "❌ No se pudo descargar $filename"
-  else
-    echo "✅ Descargado: $filename"
+# Verificar lista
+if [[ ! -f "$LISTA" ]]; then
+  echo "❌ No se encontró $LISTA"
+  exit 1
+fi
+
+# Leer línea por línea
+while IFS= read -r url; do
+  # Ignorar líneas vacías
+  [[ -z "$url" ]] && continue
+
+  filename=$(basename "$url")
+
+  # 🔍 Validación: si ya existe, saltar
+  if [[ -f "$DEST_DIR/$filename" ]]; then
+    echo "⏭️  Ya existe: $filename — Saltando"
+    continue
   fi
-done
+
+  echo "⬇️  Descargando: $filename"
+
+  if sudo curl -A "Mozilla/5.0" -s --fail "$url" -o "$DEST_DIR/$filename"; then
+    echo "✅ Descargado: $filename"
+  else
+    echo "❌ Error al descargar: $filename"
+  fi
+
+done <"$LISTA"

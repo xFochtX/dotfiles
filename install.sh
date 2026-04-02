@@ -34,7 +34,8 @@ echo "Instalado programas..."
 bash "$DOTFILES/scripts/install-opt/00-install.sh"
 
 echo "Descargando material complementario..."
-sudo bash "$DOTFILES/scripts/downloads/00-downloads.sh"
+sudo bash "$DOTFILES/scripts/downloads/00-downloads-root.sh"
+bash "$DOTFILES/scripts/downloads/00-downloads-user.sh"
 
 echo "[+] Actualice los mirrors para tener mejor latencia..."
 echo "Instalación completa."

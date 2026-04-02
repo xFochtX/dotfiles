@@ -23,9 +23,9 @@ fi
 # Descargar archivos
 
 echo "Descargando Headers.txt..."
-curl -L "https://raw.githubusercontent.com/h0tak88r/Wordlists/master/Headers.txt" -o "$DIR_HEADERS/Headers.txt"
+curl -L "https://raw.githubusercontent.com/h0tak88r/Wordlists/master/Headers.txt" -o "$DIR_HEADERS/h0tak88r"
 
 echo "Descargando headers.txt (headerpwn)..."
-curl -L "https://raw.githubusercontent.com/devanshbatham/headerpwn/main/headers.txt" -o "$DIR_HEADERS/headers_pwn.txt"
+curl -L "https://raw.githubusercontent.com/devanshbatham/headerpwn/main/headers.txt" -o "$DIR_HEADERS/devanshbatham"
 
 echo "Listo. Archivos disponibles en: $DIR_HEADERS"

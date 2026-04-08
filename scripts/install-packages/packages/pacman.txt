@@ -5,6 +5,7 @@ bat
 biber
 blackarch-mirrorlist
 brightnessctl
+broot
 burpsuite
 cava
 chromium
@@ -14,6 +15,7 @@ composer
 cpanminus
 cpupower
 docker
+duf
 efibootmgr
 exploitdb
 fastfetch

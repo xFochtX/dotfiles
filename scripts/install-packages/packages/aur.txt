@@ -1,5 +1,6 @@
 google-chrome
 gtkmm
+joshuto
 paru-debug
 protonvpn-cli
 rockyou

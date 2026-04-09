@@ -33,6 +33,9 @@ source "$DOTFILES/opt/sudo-plugin/zsh-sudo.zsh"
 source "$DOTFILES/zsh/functions/target.zsh"
 source "$DOTFILES/zsh/functions/mkt.zsh"
 
+# Configuración de broot
+source "$DOTFILES/.config/broot/launcher/bash/br"
+
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -79,10 +82,6 @@ bindkey '^[[1;5D' backward-word
 # Editor por defecto
 export EDITOR=nvim
 export VISUAL=nvim
-
-# Configuración de broot
-source $HOME/.config/broot/launcher/bash/br
-source /root/.config/broot/launcher/bash/br
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

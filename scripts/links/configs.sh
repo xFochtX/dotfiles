@@ -39,4 +39,8 @@ ln -sf "$DOTFILES/.config/waybar" "$HOME/.config/waybar"
 rm -rf "$HOME/.config/obsidian"
 ln -sf "$DOTFILES/.config/obsidian" "$HOME/.config/obsidian"
 
+# Broot
+rm -rf "$HOME/.config/broot"
+ln -sf "$DOTFILES/.config/broot" "$HOME/.config/broot"
+
 echo "Todos los enlaces de configs creados correctamente."

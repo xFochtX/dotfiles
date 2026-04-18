@@ -32,7 +32,7 @@
     "interval": 300,
     "return-type": "json",
     "tooltip": true,
-    "on-click": "kitty -e sudo pacman -Syu"
+    "on-click": "kitty --hold -e sudo pacman -Syu"
   },
   "hyprland/workspaces": {
     "disable-scroll": true,

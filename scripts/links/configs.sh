@@ -43,4 +43,8 @@ ln -sf "$DOTFILES/.config/obsidian" "$HOME/.config/obsidian"
 rm -rf "$HOME/.config/broot"
 ln -sf "$DOTFILES/.config/broot" "$HOME/.config/broot"
 
+# Yazi
+rm -rf "$HOME/.config/yazi"
+ln -sf "$DOTFILES/.config/yazi" "$HOME/.config/yazi"
+
 echo "Todos los enlaces de configs creados correctamente."

@@ -36,6 +36,7 @@ hyprpaper
 hyprshot
 imagemagick
 inotify-tools
+jdk11-openjdk
 jdk-openjdk
 jemalloc
 john
@@ -91,7 +92,6 @@ python-pip
 python-pipx
 python-pwntools
 python-pycurl
-ranger
 reflector
 ripgrep
 ruby
@@ -147,6 +147,7 @@ xclip
 xdg-desktop-portal
 xdg-desktop-portal-hyprland
 xsel
+yazi
 yt-dlp
 zathura
 zathura-pdf-mupdf

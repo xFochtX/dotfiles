@@ -13,10 +13,15 @@ export DOTFILES
 
 source "$DOTFILES/opt/powerlevel10k/powerlevel10k.zsh-theme"
 
-# Custom Aliases
-# -----------------------------------------------
-# Cargar todos los alias
-for file in "$DOTFILES/zsh/aliases"/*.zsh; do
+# Activar null_glob:
+# Si no hay archivos que coincidan con el patrón, el glob se expande a vacío
+# en lugar de dejar el patrón literal (**/*.zsh), evitando errores en el loop
+setopt null_glob
+
+# Recorrer todos los archivos .zsh dentro de la carpeta y subcarpetas
+# **/*.zsh = busca recursivamente en todos los niveles
+for file in "$DOTFILES/zsh"/**/*.zsh; do
+  # Cargar cada archivo encontrado en la sesión actual
   source "$file"
 done
 
@@ -28,10 +33,6 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # ZSH Sudo Plugin
 source "$DOTFILES/opt/sudo-plugin/zsh-sudo.zsh"
-
-# Cargar funciones personalizadas
-source "$DOTFILES/zsh/functions/target.zsh"
-source "$DOTFILES/zsh/functions/mkt.zsh"
 
 # Configuración de broot
 source "$DOTFILES/.config/broot/launcher/bash/br"

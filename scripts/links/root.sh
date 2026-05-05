@@ -29,6 +29,9 @@ sudo ln -sf "$DOTFILES/.config/obsidian" /root/.config/obsidian
 # Broot
 sudo ln -sf "$DOTFILES/.config/broot" /root/.config/broot
 
+# Yazi
+sudo ln -sf "$DOTFILES/.config/yazi" /root/.config/yazi
+
 # Servicio SDDM Random Theme
 echo "Instalando servicio sddm-random-theme..."
 sudo install -Dm644 "$DOTFILES/.config/systemd/system/sddm-random-theme.service" /etc/systemd/system/sddm-random-theme.service

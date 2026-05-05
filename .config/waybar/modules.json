@@ -28,11 +28,12 @@
     "tooltip": true
   },
   "custom/pacman_updates": {
-    "exec": "~/.config/waybar/scripts/pacman-updates.sh",
+    "exec": "~/.config/waybar/scripts/check-pacman-updates.sh",
     "interval": 300,
+    "signal": 8,
     "return-type": "json",
     "tooltip": true,
-    "on-click": "kitty --hold -e sudo pacman -Syu"
+    "on-click": "kitty --hold -e ~/.config/waybar/scripts/pacman-updates.sh"
   },
   "hyprland/workspaces": {
     "disable-scroll": true,

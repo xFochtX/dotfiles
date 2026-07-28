@@ -1,6 +1,8 @@
 /assets
 /opt/*
-!opt/nvim
-!opt/fuzz
+!/opt/nvim
+/opt/nvim/spell/**
+!/opt/nvim/spell/custom.add
+!/opt/fuzz
 /.config/obsidian/*
 !/.config/obsidian/.gitkeep

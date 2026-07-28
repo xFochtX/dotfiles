@@ -17,11 +17,6 @@ while true; do
     $PLAY_SOUND
     sleep 5
 
-  # Batería al 100% y cargando -> alarma continua
-  elif [[ $PERCENT -eq 100 && $STATE == "fully-charged" ]]; then
-    $PLAY_SOUND
-    sleep 10
-
   # Cualquier otro caso
   else
     sleep 15 # Espera para no saturar CPU

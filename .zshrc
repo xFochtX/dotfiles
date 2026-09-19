@@ -65,8 +65,8 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Comandos de consola shell ya no se mostrarán en negrita
-export LS_COLORS=$(echo $LS_COLORS | sed 's/=01;/=/g')
+# Quitar el formato en negrita de la salida del comando ls
+export LS_COLORS=$(echo "$LS_COLORS" | sed 's/=01;/=/g')
 
 # Agregar rutas a los binarios
 #export PATH="$DOTFILES/bin:$PATH"

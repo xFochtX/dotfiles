@@ -1,0 +1,13 @@
+blackarch-mirrorlist
+burpsuite
+davtest
+ffuf
+gtk2
+ncurses5-compat-libs
+padbuster
+perl-crypt-ssleay
+perl-http-dav
+perl-xml-dom
+python2
+python-future
+wfuzz

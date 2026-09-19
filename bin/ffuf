@@ -1,3 +1,0 @@
-#!/bin/bash
-cd "$HOME/dotfiles/opt/ffuf"
-exec ./ffuf "$@"

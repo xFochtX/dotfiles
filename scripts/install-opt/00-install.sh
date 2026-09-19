@@ -5,9 +5,9 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Ejecutar los scripts desde su ubicación absoluta
 "$SCRIPT_DIR/powerlevel10.sh"
-"$SCRIPT_DIR/davtest.sh"
-"$SCRIPT_DIR/ffuf.sh"
-"$SCRIPT_DIR/gobuster.sh"
+#"$SCRIPT_DIR/davtest.sh"
+#"$SCRIPT_DIR/ffuf.sh"
+#"$SCRIPT_DIR/gobuster.sh"
 "$SCRIPT_DIR/sudo-plugin.sh"
 "$SCRIPT_DIR/pip2.sh"
 "$SCRIPT_DIR/wordlists.sh"

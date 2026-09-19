@@ -1,3 +1,0 @@
-#!/bin/bash
-source "/usr/local/bin/wfuzz-py/env/bin/activate"
-exec wfuzz "$@"

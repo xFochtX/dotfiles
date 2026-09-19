@@ -6,7 +6,8 @@ border-color=#26a65b
 border-size=2
 border-radius=10
 
-padding=12
+padding=9
+outer-margin=30,30,0,0
 margin=12
 width=350
 
@@ -15,4 +16,3 @@ ignore-timeout=false
 
 anchor=top-right
 layer=overlay
-

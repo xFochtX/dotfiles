@@ -1,10 +1,13 @@
-google-chrome
+brave-bin
+electron37
 gtkmm
+litehtml0.9
+mbedtls2
 paru-debug
 protonvpn-cli
+python-pkg_resources
 rockyou
 sddm-astronaut-theme
-tofi
 uefitool
 vmware-keymaps
 vmware-workstation

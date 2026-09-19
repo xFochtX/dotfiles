@@ -35,6 +35,10 @@ ln -sf "$DOTFILES/.config/hypr" "$HOME/.config/hypr"
 rm -rf "$HOME/.config/waybar"
 ln -sf "$DOTFILES/.config/waybar" "$HOME/.config/waybar"
 
+# Mako
+rm -rf "$HOME/.config/mako"
+ln -sf "$DOTFILES/.config/mako" "$HOME/.config/mako"
+
 # Obsidian
 rm -rf "$HOME/.config/obsidian"
 ln -sf "$DOTFILES/.config/obsidian" "$HOME/.config/obsidian"

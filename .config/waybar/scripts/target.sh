@@ -8,6 +8,11 @@ ip_target=$(grep '^ip:' "$target_file" | cut -d':' -f2-)
 name_target=$(grep '^name:' "$target_file" | cut -d':' -f2-)
 
 if [ -n "$ip_target" ] && [ -n "$name_target" ]; then
+  if [ "$1" = "copy" ]; then
+    printf '%s' "$ip_target" | wl-copy
+    notify-send "La ip $ip_target se copió al portapapeles"
+    exit 0
+  fi
   output="󰓾 $ip_target"
   tooltip="󰌢  $name_target"
   echo "{\"text\": \"$output\", \"tooltip\": \"$tooltip\", \"class\": \"ip-view\", \"alt\": \"local-ip\"}"

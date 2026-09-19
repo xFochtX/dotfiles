@@ -11,10 +11,12 @@ cava
 chromium
 clang
 clinfo
+cmake
 composer
 cpanminus
 cpupower
 docker
+dosfstools
 duf
 efibootmgr
 exploitdb
@@ -31,6 +33,7 @@ hashcat
 hydra
 hypridle
 hyprland
+hyprlauncher
 hyprlock
 hyprpaper
 hyprshot
@@ -46,11 +49,13 @@ kitty
 lazygit
 less
 libcurl-compat
+librewolf
 linux
 linux-firmware
 linux-headers
 lsd
 luarocks
+mako
 man-db
 man-pages
 mariadb
@@ -101,6 +106,7 @@ ruby-erb
 sddm
 sqlmap
 sudo
+tcpdump
 tectonic
 tesseract-data-eng
 texlive-basic
@@ -151,6 +157,7 @@ yazi
 yt-dlp
 zathura
 zathura-pdf-mupdf
+zbar
 zellij
 zsh
 zsh-autocomplete

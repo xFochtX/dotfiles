@@ -25,6 +25,7 @@
     "interval": 2,
     "return-type": "json",
     "format": "{}",
+    "on-click": "~/.config/waybar/scripts/target.sh copy",
     "tooltip": true
   },
   "custom/pacman_updates": {

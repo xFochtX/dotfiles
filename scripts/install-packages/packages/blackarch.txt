@@ -9,5 +9,3 @@ perl-crypt-ssleay
 perl-http-dav
 perl-xml-dom
 python2
-python-future
-wfuzz

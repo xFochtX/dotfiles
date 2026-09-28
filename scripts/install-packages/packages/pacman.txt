@@ -109,6 +109,7 @@ device-mapper
 diffutils
 dkms
 docker
+docker-compose
 dosfstools
 double-conversion
 dsfmt
@@ -906,6 +907,7 @@ python-gobject
 python-idna
 python-imagesize
 python-importlib-metadata
+python-iniconfig
 python-intervaltree
 python-invoke
 python-jaraco.classes
@@ -925,6 +927,7 @@ python-mccabe
 python-more-itertools
 python-msgpack
 python-multidict
+python-netaddr
 python-numpy
 python-packaging
 python-paramiko
@@ -932,6 +935,7 @@ python-pillow
 python-pip
 python-pipx
 python-platformdirs
+python-pluggy
 python-plumbum
 python-propcache
 python-proton-core
@@ -947,9 +951,9 @@ python-pyflakes
 python-pygments
 python-pynacl
 python-pyopenssl
-python-pyparsing
 python-pyserial
 python-pysocks
+python-pytest
 python-pytz
 python-requests
 python-roman-numerals-py
@@ -977,7 +981,6 @@ python-urllib3
 python-userpath
 python-webencodings
 python-wheel
-python-wxpython
 python-yaml
 python-yarl
 python-zipp
@@ -1011,10 +1014,12 @@ ropgadget
 rtkit
 rubberband
 ruby
+ruby-addressable
 ruby-build
 ruby-bundler
 ruby-erb
 rubygems
+ruby-public_suffix
 runc
 rust
 s2n-tls
@@ -1160,8 +1165,6 @@ wireplumber
 wl-clipboard
 woff2
 wpa_supplicant
-wxwidgets-common
-wxwidgets-gtk3
 x264
 x265
 xcb-proto

@@ -1,4 +1,7 @@
 #!/bin/bash
 #source "/usr/local/bin/wfuzz-py/env/bin/activate"
 #exec wfuzz "$@"
-exec "$HOME/dotfiles/opt/wfuzz/wfuzz" "$@"
+WFUZZ_DIR="$HOME/dotfiles/opt/wfuzz"
+
+cd "$WFUZZ_DIR" || exit 1
+exec "$WFUZZ_DIR/wfuzz" "$@"

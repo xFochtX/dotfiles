@@ -1,0 +1,318 @@
+#!/usr/bin/env bash
+#
+# target - Manage target machine configuration.
+#
+# Usage:
+#   target <IP> <NAME>    Set target IP and name
+#   target -ip <IP>       Update target IP
+#   target -name <NAME>   Update target name
+#   target -show          Display current target
+#   target -clear         Remove target configuration
+#   target -help          Display help
+#
+# Configuration file: /tmp/target
+# Permissions: 600 (owner read/write only)
+
+set -o pipefail
+umask 077
+
+TARGET_FILE="/tmp/target"
+
+TARGET_IP=""
+TARGET_NAME=""
+
+# Validate an IPv4 address.
+valid_ipv4() {
+    local ip="$1"
+    local -a octets
+    local octet
+
+    [[ "$ip" =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}$ ]] || return 1
+
+    IFS='.' read -r -a octets <<< "$ip"
+
+    for octet in "${octets[@]}"; do
+        (( 10#$octet <= 255 )) || return 1
+    done
+
+    return 0
+}
+
+# Check whether the configuration file is safe to access.
+check_target_file() {
+    [[ -e "$TARGET_FILE" || -L "$TARGET_FILE" ]] || return 0
+
+    if [[ -L "$TARGET_FILE" || ! -f "$TARGET_FILE" ]]; then
+        printf 'Error: %s must be a regular file, not a symlink.\n' \
+            "$TARGET_FILE" >&2
+        return 1
+    fi
+
+    if [[ ! -O "$TARGET_FILE" ]]; then
+        printf 'Error: %s is not owned by the current user.\n' \
+            "$TARGET_FILE" >&2
+        printf 'Do not run this command with sudo.\n' >&2
+        return 1
+    fi
+
+    chmod 600 "$TARGET_FILE" || {
+        printf 'Error: could not secure %s permissions.\n' \
+            "$TARGET_FILE" >&2
+        return 1
+    }
+}
+
+# Load the existing configuration.
+load_target() {
+    TARGET_IP=""
+    TARGET_NAME=""
+
+    check_target_file || return 1
+
+    [[ -f "$TARGET_FILE" ]] || return 0
+
+    local line
+
+    while IFS= read -r line || [[ -n "$line" ]]; do
+        case "$line" in
+            ip:*)
+                TARGET_IP="${line#ip:}"
+                ;;
+            name:*)
+                TARGET_NAME="${line#name:}"
+                ;;
+        esac
+    done < "$TARGET_FILE"
+}
+
+# Save configuration with restrictive permissions.
+save_target() {
+    local tmp_file
+
+    if [[ -n "$TARGET_IP" ]] && ! valid_ipv4 "$TARGET_IP"; then
+        printf 'Error: invalid target IPv4 address: %s\n' \
+            "$TARGET_IP" >&2
+        return 1
+    fi
+
+    if [[ "$TARGET_NAME" == *$'\n'* ]]; then
+        printf 'Error: target name must be a single line.\n' >&2
+        return 1
+    fi
+
+    check_target_file || return 1
+
+    tmp_file=$(mktemp /tmp/target.XXXXXX) || {
+        printf 'Error: could not create temporary configuration file.\n' >&2
+        return 1
+    }
+
+    chmod 600 "$tmp_file" || {
+        rm -f -- "$tmp_file"
+        return 1
+    }
+
+    {
+        [[ -n "$TARGET_IP" ]] && printf 'ip:%s\n' "$TARGET_IP"
+        [[ -n "$TARGET_NAME" ]] && printf 'name:%s\n' "$TARGET_NAME"
+    } > "$tmp_file" || {
+        rm -f -- "$tmp_file"
+        printf 'Error: could not write target configuration.\n' >&2
+        return 1
+    }
+
+    chmod 600 "$tmp_file" || {
+        rm -f -- "$tmp_file"
+        return 1
+    }
+
+    mv -f -- "$tmp_file" "$TARGET_FILE" || {
+        rm -f -- "$tmp_file"
+        printf 'Error: could not save target configuration.\n' >&2
+        return 1
+    }
+
+    printf 'Target configuration updated successfully.\n'
+}
+
+# Set both IP and name.
+set_target() {
+    local ip="$1"
+    local name="$2"
+
+    if ! valid_ipv4 "$ip"; then
+        printf 'Error: invalid IPv4 address: %s\n' "$ip" >&2
+        return 1
+    fi
+
+    [[ -n "$name" ]] || {
+        printf 'Error: target name cannot be empty.\n' >&2
+        return 1
+    }
+
+    [[ "$name" != *$'\n'* ]] || {
+        printf 'Error: target name must be a single line.\n' >&2
+        return 1
+    }
+
+    TARGET_IP="$ip"
+    TARGET_NAME="$name"
+
+    save_target
+}
+
+# Update only the target IP.
+set_target_ip() {
+    local ip="$1"
+
+    if ! valid_ipv4 "$ip"; then
+        printf 'Error: invalid IPv4 address: %s\n' "$ip" >&2
+        return 1
+    fi
+
+    load_target || return 1
+    TARGET_IP="$ip"
+
+    save_target
+}
+
+# Update only the target name.
+set_target_name() {
+    local name="$1"
+
+    [[ -n "$name" ]] || {
+        printf 'Error: target name cannot be empty.\n' >&2
+        return 1
+    }
+
+    [[ "$name" != *$'\n'* ]] || {
+        printf 'Error: target name must be a single line.\n' >&2
+        return 1
+    }
+
+    load_target || return 1
+    TARGET_NAME="$name"
+
+    save_target
+}
+
+# Display current configuration.
+show_target() {
+    load_target || return 1
+
+    printf 'Target configuration\n'
+    printf '%-10s %s\n' "IP:" "${TARGET_IP:-Not configured}"
+    printf '%-10s %s\n' "Name:" "${TARGET_NAME:-Not configured}"
+
+    if [[ -f "$TARGET_FILE" ]]; then
+        printf 'File: %s\n' "$TARGET_FILE"
+        printf 'Permissions: '
+        stat -c '%a' "$TARGET_FILE"
+    else
+        printf 'Status: No configuration file exists.\n'
+    fi
+}
+
+# Remove target configuration.
+clear_target() {
+    check_target_file || return 1
+
+    if [[ -e "$TARGET_FILE" || -L "$TARGET_FILE" ]]; then
+        rm -- "$TARGET_FILE" || {
+            printf 'Error: could not remove target configuration.\n' >&2
+            return 1
+        }
+
+        printf 'Target configuration cleared.\n'
+    else
+        printf 'No target configuration to clear.\n'
+    fi
+}
+
+# Display help.
+show_help() {
+    cat <<'EOF'
+Usage: target [option] [arguments]
+
+Commands:
+  target <IP> <NAME>    Set target IP and name
+  target -ip <IP>       Update only the target IP
+  target -name <NAME>   Update only the target name
+  target -show          Display current configuration
+  target -clear         Remove target configuration
+  target -help          Display this help
+
+Examples:
+  target 10.10.10.25 machine-target
+  target -ip 10.10.10.30
+  target -name new-target
+  target -show
+  target -clear
+
+Configuration file:
+  /tmp/target
+
+File permissions:
+  600 (owner read/write only)
+
+Run as your regular user. Do not use sudo.
+EOF
+}
+
+# Main entry point.
+main() {
+    case "${1:-}" in
+        -help|--help|-h)
+            [[ $# -eq 1 ]] || {
+                printf 'Error: unexpected extra arguments.\n' >&2
+                return 2
+            }
+            show_help
+            ;;
+        -show)
+            [[ $# -eq 1 ]] || {
+                printf 'Error: -show takes no arguments.\n' >&2
+                return 2
+            }
+            show_target
+            ;;
+        -clear)
+            [[ $# -eq 1 ]] || {
+                printf 'Error: -clear takes no arguments.\n' >&2
+                return 2
+            }
+            clear_target
+            ;;
+        -ip)
+            [[ $# -eq 2 ]] || {
+                printf 'Usage: target -ip <IP>\n' >&2
+                return 2
+            }
+            set_target_ip "$2"
+            ;;
+        -name)
+            [[ $# -eq 2 ]] || {
+                printf 'Usage: target -name <NAME>\n' >&2
+                return 2
+            }
+            set_target_name "$2"
+            ;;
+        "")
+            show_help
+            ;;
+        -*)
+            printf 'Error: unknown option: %s\n' "$1" >&2
+            printf 'Run target -help for usage.\n' >&2
+            return 2
+            ;;
+        *)
+            [[ $# -eq 2 ]] || {
+                printf 'Usage: target <IP> <NAME>\n' >&2
+                return 2
+            }
+            set_target "$1" "$2"
+            ;;
+    esac
+}
+
+main "$@"

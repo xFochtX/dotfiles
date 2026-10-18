@@ -1,0 +1,329 @@
+#!/usr/bin/env bash
+#
+# network-info - Display and copy network information.
+#
+# Usage:
+#   network-info             Display all network information
+#   network-info -local      Display and copy the local IP
+#   network-info -public     Fetch, display and copy the public IP
+#   network-info -vpn        Display and copy the VPN IP
+#   network-info -target     Display and copy the target IP
+#   network-info -help       Display help
+#
+# Target configuration: /tmp/target
+
+set -o pipefail
+
+TARGET_FILE="/tmp/target"
+
+# Validate an IPv4 address.
+valid_ipv4() {
+  local ip="$1"
+  local -a octets
+  local octet
+
+  [[ "$ip" =~ ^[0-9]{1,3}(\.[0-9]{1,3}){3}$ ]] || return 1
+
+  IFS='.' read -r -a octets <<<"$ip"
+
+  for octet in "${octets[@]}"; do
+    ((10#$octet <= 255)) || return 1
+  done
+
+  return 0
+}
+
+# Get the first global IPv4 address assigned to an interface.
+interface_ip() {
+  ip -o -4 addr show dev "$1" scope global 2>/dev/null |
+    awk 'NR == 1 {split($4, a, "/"); print a[1]; exit}'
+}
+
+# Retrieve the local IPv4 address.
+get_local_ip() {
+  local iface=""
+  local ip_addr=""
+
+  if command -v nmcli >/dev/null 2>&1; then
+    iface=$(
+      nmcli -t -f DEVICE,TYPE,STATE device status 2>/dev/null |
+        awk -F: '
+                    $3 == "connected" && ($2 == "wifi" || $2 == "ethernet") {
+                        print $1
+                        exit
+                    }
+                '
+    )
+  fi
+
+  if [[ -n "$iface" ]]; then
+    ip_addr=$(interface_ip "$iface")
+
+    if valid_ipv4 "$ip_addr"; then
+      printf '%s\n' "$ip_addr"
+      return 0
+    fi
+  fi
+
+  # Fall back to the interface selected by the default route.
+  iface=$(
+    ip -4 route get 1.1.1.1 2>/dev/null |
+      awk '{for (i=1; i<=NF; i++) if ($i=="dev") {print $(i+1); exit}}'
+  )
+
+  if [[ -n "$iface" ]]; then
+    case "$iface" in
+    tun* | tap* | wg* | proton* | nordlynx | tailscale* | mullvad* | warp*)
+      return 1
+      ;;
+    esac
+
+    ip_addr=$(interface_ip "$iface")
+
+    if valid_ipv4 "$ip_addr"; then
+      printf '%s\n' "$ip_addr"
+      return 0
+    fi
+  fi
+
+  return 1
+}
+
+# Retrieve the public IPv4 address.
+# Only called when explicitly requested with -public.
+get_public_ip() {
+  local url result
+
+  command -v curl >/dev/null 2>&1 || return 1
+
+  for url in \
+    "https://api.ipify.org" \
+    "https://ifconfig.me/ip"; do
+    result=$(
+      curl -4 -fsS --connect-timeout 2 --max-time 4 \
+        "$url" 2>/dev/null
+    ) || continue
+
+    if valid_ipv4 "$result"; then
+      printf '%s\n' "$result"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+# Retrieve the IPv4 address of a known VPN interface.
+get_vpn_ip() {
+  local iface result
+  local -a candidates=()
+  local -a all_interfaces=()
+
+  candidates=(
+    proton0 wg0 tun0 tap0
+    nordlynx tailscale0 mullvad
+    warp0
+  )
+
+  shopt -s nullglob
+  all_interfaces=(/sys/class/net/*)
+  shopt -u nullglob
+
+  for iface in "${all_interfaces[@]}"; do
+    iface="${iface##*/}"
+
+    case "$iface" in
+    wg[0-9]* | tun[0-9]* | tap[0-9]* | proton[0-9]* | \
+      tailscale[0-9]* | mullvad[0-9]* | warp[0-9]*)
+      candidates+=("$iface")
+      ;;
+    esac
+  done
+
+  for iface in "${candidates[@]}"; do
+    [[ -d "/sys/class/net/$iface" ]] || continue
+
+    result=$(interface_ip "$iface")
+
+    if valid_ipv4 "$result"; then
+      printf '%s\n' "$result"
+      return 0
+    fi
+  done
+
+  return 1
+}
+
+# Read the target IP from /tmp/target.
+get_target_ip() {
+  [[ -r "$TARGET_FILE" && -f "$TARGET_FILE" ]] || return 1
+
+  local result
+
+  result=$(
+    awk -F: '
+            $1 == "ip" {
+                sub(/^[[:space:]]+/, "", $2)
+                sub(/[[:space:]]+$/, "", $2)
+                print $2
+                exit
+            }
+        ' "$TARGET_FILE"
+  )
+
+  valid_ipv4 "$result" || return 1
+  printf '%s\n' "$result"
+}
+
+# Read the target machine name from /tmp/target.
+get_target_name() {
+  [[ -r "$TARGET_FILE" && -f "$TARGET_FILE" ]] || return 1
+
+  local result
+
+  result=$(
+    awk '
+            /^name:/ {
+                sub(/^name:/, "")
+                sub(/^[[:space:]]+/, "")
+                sub(/[[:space:]]+$/, "")
+                print
+                exit
+            }
+        ' "$TARGET_FILE"
+  )
+
+  [[ -n "$result" ]] || return 1
+  printf '%s\n' "$result"
+}
+
+# Copy an IPv4 address to the clipboard.
+copy_ip() {
+  local value="$1"
+
+  if ! valid_ipv4 "$value"; then
+    printf 'Error: no valid IPv4 address available to copy.\n' >&2
+    return 1
+  fi
+
+  if command -v wl-copy >/dev/null 2>&1; then
+    printf '%s' "$value" | wl-copy || {
+      printf 'Error: failed to copy the IP address to the clipboard.\n' >&2
+      return 1
+    }
+  elif command -v xclip >/dev/null 2>&1; then
+    printf '%s' "$value" | xclip -selection clipboard || {
+      printf 'Error: failed to copy the IP address to the clipboard.\n' >&2
+      return 1
+    }
+  else
+    printf 'Error: install wl-clipboard with: sudo pacman -S wl-clipboard\n' >&2
+    return 1
+  fi
+
+  printf 'Copied to clipboard.\n'
+}
+
+# Display the network information summary.
+show_network_info() {
+  local local_ip public_ip vpn_ip target_ip target_name
+
+  # No external request is made for the public IP.
+  local_ip=$(get_local_ip) || local_ip="Unavailable"
+  public_ip="Not queried"
+  vpn_ip=$(get_vpn_ip) || vpn_ip="Disconnected"
+  target_ip=$(get_target_ip) || target_ip="Not configured"
+  target_name=$(get_target_name) || target_name="Not configured"
+
+  printf '╭──────────────── NETWORK INFO ────────────────╮\n'
+  printf '│ %-13s%-31.31s │\n' "Local IP:" "$local_ip"
+  printf '│ %-13s%-31.31s │\n' "Public IP:" "$public_ip"
+  printf '│ %-13s%-31.31s │\n' "VPN IP:" "$vpn_ip"
+  printf '│ %-13s%-31.31s │\n' "Target IP:" "$target_ip"
+  printf '│ %-13s%-31.31s │\n' "Target Name:" "$target_name"
+  printf '╰──────────────────────────────────────────────╯\n'
+}
+
+# Display help.
+show_help() {
+  cat <<'EOF'
+Usage: network-info [option]
+
+Without arguments:
+  Display local, public, VPN and target information.
+  The public IP is not queried.
+
+Options:
+  -local    Display and copy the local IP
+  -public   Fetch, display and copy the public IP
+  -vpn      Display and copy the VPN IP
+  -target   Display and copy the target IP
+  -help     Display this help message
+
+Target configuration:
+  /tmp/target
+
+Expected file format:
+  ip:10.10.10.25
+  name:machine-target
+EOF
+}
+
+# Main entry point.
+main() {
+  local action="${1:-show}"
+  local value=""
+
+  if [[ $# -gt 1 ]]; then
+    printf 'Error: provide only one option. Run network-info -help.\n' >&2
+    return 2
+  fi
+
+  case "$action" in
+  -help | --help | -h)
+    show_help
+    ;;
+  -local)
+    value=$(get_local_ip) || {
+      printf 'Error: could not retrieve the local IP address.\n' >&2
+      return 1
+    }
+    printf 'Local IP: %s\n' "$value"
+    copy_ip "$value"
+    ;;
+  -public)
+    value=$(get_public_ip) || {
+      printf 'Error: could not retrieve the public IP address.\n' >&2
+      return 1
+    }
+    printf 'Public IP: %s\n' "$value"
+    copy_ip "$value"
+    ;;
+  -vpn)
+    value=$(get_vpn_ip) || {
+      printf 'Error: no VPN IPv4 address found.\n' >&2
+      return 1
+    }
+    printf 'VPN IP: %s\n' "$value"
+    copy_ip "$value"
+    ;;
+  -target)
+    value=$(get_target_ip) || {
+      printf 'Error: target IP is not configured or is invalid in /tmp/target.\n' >&2
+      return 1
+    }
+    printf 'Target IP: %s\n' "$value"
+    copy_ip "$value"
+    ;;
+  show)
+    show_network_info
+    ;;
+  *)
+    printf 'Error: unknown option: %s\n' "$action" >&2
+    printf 'Run network-info -help to see available options.\n' >&2
+    return 2
+    ;;
+  esac
+}
+
+main "$@"

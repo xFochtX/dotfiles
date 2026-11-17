@@ -20,20 +20,68 @@
 return {
   {
     "petertriho/nvim-scrollbar",
-    config = function()
-      require("scrollbar").setup({
-        handle = {
-          color = "#666666",
+
+    dependencies = {
+      {
+        "lewis6991/gitsigns.nvim",
+        opts = {},
+      },
+    },
+
+    opts = {
+      -- Indicador principal
+      scrollbar = {
+        thumb = {
+          highlight = {
+            bg = "#666666",
+          },
           hide_if_all_visible = false,
         },
-        marks = {
-          Search = { color = "#FFA500" },
-          Error = { color = "#FF0000" },
-          Warn = { color = "#FFFF00" },
-          Info = { color = "#00FFFF" },
-          Hint = { color = "#FFFFFF" },
+
+        -- Mantener visible la barra aunque el archivo quepa en pantalla
+        hide_if_all_visible = false,
+
+        -- Considerar líneas visuales ajustadas y pliegues
+        unit = "screenline",
+      },
+
+      -- Fuentes de información para la barra
+      providers = {
+        cursor = true,
+        diagnostic = true,
+        search = true,
+        gitsigns = true,
+      },
+
+      -- Colores personalizados
+      marks = {
+        Search = {
+          highlight = { fg = "#FFA500" },
         },
-      })
-    end,
+        Error = {
+          highlight = { fg = "#FF0000" },
+        },
+        Warn = {
+          highlight = { fg = "#FFFF00" },
+        },
+        Info = {
+          highlight = { fg = "#00FFFF" },
+        },
+        Hint = {
+          highlight = { fg = "#FFFFFF" },
+        },
+
+        -- Marcas de Git
+        GitAdd = {
+          highlight = { fg = "#00FF00" },
+        },
+        GitChange = {
+          highlight = { fg = "#00BFFF" },
+        },
+        GitDelete = {
+          highlight = { fg = "#FF5555" },
+        },
+      },
+    },
   },
 }

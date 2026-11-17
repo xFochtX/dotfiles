@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Verifica si se pasó un archivo como argumento
 if [ -z "$1" ]; then
@@ -7,4 +7,4 @@ if [ -z "$1" ]; then
 fi
 
 # Copia el contenido del archivo al portapapeles
-wl-copy <"$1"
+wl-copy --type 'text/plain' <"$1"
